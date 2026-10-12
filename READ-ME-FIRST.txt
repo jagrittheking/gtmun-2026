@@ -1,0 +1,54 @@
+GTMUN’26 DELEGATE PORTAL — OFFICIAL SYSTEM SETUP
+=============================================================
+
+WEBSITE ADDRESS (LIVE LOCAL PREVIEW):
+http://localhost:8080/
+
+KEY PAGES:
+- home.html / START-HERE.html: Main Delegate Portal & Live Tally Hub
+- handbook.html: Complete Full-Screen Delegate Handbook
+- portal.html: Committee Operations Suites (UNGA, UNCSW, IPL, AIPPM)
+
+-------------------------------------------------------------
+HOW TO CONNECT YOUR GOOGLE FORMS & LIVE TALLY
+-------------------------------------------------------------
+All submission buttons and the live tally are centralized in:
+  app.js (Lines 5 to 17)
+
+1. CONNECTING YOUR GOOGLE FORMS:
+   Open app.js in your editor and paste your Google Form share links:
+
+   const GOOGLE_FORMS = {
+     substantiveChit: "YOUR_SUBSTANTIVE_GOOGLE_FORM_URL",
+     poiChit: "YOUR_POI_GOOGLE_FORM_URL",
+     workingPaper: "YOUR_WORKING_PAPER_GOOGLE_FORM_URL",
+     anonymousComplaints: "https://forms.gle/rKPKg1oxisKdSiSA6"
+   };
+
+   When delegates click "Submit Substantive Chit", "POI Chit", or "Submit Working Paper",
+   the corresponding Google Form will open directly in a new tab.
+
+2. CONNECTING YOUR GOOGLE SHEET FOR THE LIVE TALLY:
+   When delegates submit answers via Google Forms, Google saves them to a Google Sheet.
+   To display those responses live on the portal without any database:
+   
+   a) Open your Google Form -> click the "Responses" tab -> click "Link to Sheets".
+   b) In the opened Google Sheet, click the green "Share" button (top right).
+   c) Under "General access", change to: "Anyone with the link can view".
+   d) In the URL bar of your Google Sheet, copy the Sheet ID:
+      Example URL: https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
+      The Sheet ID is: 1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms
+   e) Paste it into app.js:
+      const GOOGLE_SHEET_ID = "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms";
+
+   The portal will automatically query your Google Sheet via Google's live JSON Visualization API
+   and populate the Live Chit Log & Tally table in real-time!
+
+-------------------------------------------------------------
+CHANGES APPLIED:
+-------------------------------------------------------------
+✓ Removed all temporary popup dialog forms.
+✓ All chit and working paper submission buttons now route to Google Forms.
+✓ Removed all fake/mock test chits; the live tally starts completely clean.
+✓ Fixed the half-screen Handbook issue: clicking "Read online" opens handbook.html
+  in full-screen reading mode with complete table of contents, scrollspy, and read-aloud support.

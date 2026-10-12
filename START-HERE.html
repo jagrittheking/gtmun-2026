@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GTMUN’26 — DELEGATE PORTAL | Global Teens Model United Nations</title>
+  <link rel="icon" type="image/png" href="gtmun-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700;8..60,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="portal.css">
+</head>
+<body class="cine">
+
+  <!-- MASTHEAD / HEADER (Modeled 1:1 on portal-inmun26) -->
+  <header class="masthead">
+    <div class="wrap">
+      <a class="lockup" href="home.html">
+        <img class="ryan-emblem" src="gtmun-logo.png" alt="GTMUN 2026" style="height:48px;width:auto;border-radius:8px;background:#fff;padding:2px">
+        <span class="txt">
+          <b>GTMUN’26</b>
+          <span>Global Teens Model United Nations</span>
+        </span>
+      </a>
+
+      <input type="checkbox" id="mnav" class="nav-toggle" aria-label="Toggle navigation menu">
+      <label for="mnav" class="nav-burger" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </label>
+
+      <nav class="mh-nav">
+        <div class="nav-pill">
+          <a href="#how-it-works">How It Works</a>
+          <a href="handbook.html">Handbook</a>
+          <a href="#committees">Committees</a>
+          <a href="#live-log">Live Chit Log</a>
+          <a href="#awards">Awards</a>
+        </div>
+        <div class="nav-submit">
+          <button type="button" class="submit-btn" aria-haspopup="true">
+            Submit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="submit-menu">
+            <a href="javascript:void(0)" onclick="openGoogleForm('substantiveChit')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Substantive Chit
+            </a>
+            <a href="javascript:void(0)" onclick="openGoogleForm('poiChit', 'unga')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/></svg> UNGA POI Chit
+            </a>
+            <a href="javascript:void(0)" onclick="openGoogleForm('poiChit', 'uncsw')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/></svg> UNCSW POI Chit
+            </a>
+            <a href="javascript:void(0)" onclick="openGoogleForm('workingPaper')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg> Submit Documents
+            </a>
+            <a href="https://forms.gle/rKPKg1oxisKdSiSA6" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg> Anonymous Complaints
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 1st REQUIREMENT: GTMUN'26 DELEGATE PORTAL Hero (Exact INMUN cine-hero structure) -->
+  <section class="cine-hero">
+    <div class="cine-hero-rings" aria-hidden="true"></div>
+    <div class="cine-hero-inner">
+      <div class="eyebrow">GLOBAL TEENS MODEL UNITED NATIONS 2026</div>
+      <h1>GTMUN’26 DELEGATE PORTAL</h1>
+      <p style="margin:1rem auto 0;color:#9fb2d4;font-size:1.06rem;max-width:650px">
+        The official operational hub for delegates. Submit substantive chits directly to your Executive Board dais, route POI inquiries across delegations, upload working papers, and track committee tallies in real time.
+      </p>
+
+      <!-- Rotating Motivational Quote (powered by js/countdown.js) -->
+      <div class="cd-quote" id="cd-quote" style="margin-top:1.4rem">
+        <p class="cd-quote-text">“The future belongs to those who believe in the beauty of their dreams.”</p>
+        <p class="cd-quote-author">— Eleanor Roosevelt</p>
+      </div>
+
+      <!-- Live Session Status & Countdown -->
+      <div class="countdown" id="conference-countdown" role="timer" aria-label="Conference Countdown" style="margin:1.8rem auto 0">
+        <div class="cd-unit"><span class="cd-num" id="days">00</span><span class="cd-lbl">DAYS</span></div>
+        <div class="cd-unit"><span class="cd-num" id="hours">00</span><span class="cd-lbl">HOURS</span></div>
+        <div class="cd-unit"><span class="cd-num" id="minutes">00</span><span class="cd-lbl">MINUTES</span></div>
+        <div class="cd-unit"><span class="cd-num" id="seconds">00</span><span class="cd-lbl">SECONDS</span></div>
+      </div>
+      <p class="cd-caption" id="countdown-status" style="margin-top:.7rem">
+        <b>14–15 November 2026</b> · 100% Online Conference · Session begins 9:00 AM IST
+      </p>
+    </div>
+  </section>
+
+  <!-- QUICK ACTION BUTTONS -->
+  <div style="max-width:var(--maxw);margin:0 auto 2.2rem;padding:0 1.5rem;text-align:center;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+    <button class="btn btn-red" type="button" onclick="openGoogleForm('substantiveChit')" style="display:inline-flex">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Submit Substantive Chit
+    </button>
+    <button class="btn btn-red" type="button" onclick="openGoogleForm('poiChit')" style="display:inline-flex">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/></svg> Submit POI Chit
+    </button>
+    <button class="btn btn-red" type="button" onclick="openGoogleForm('workingPaper')" style="display:inline-flex">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 11v6M9 14l3-3 3 3"/><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg> Submit Documents
+    </button>
+    <a class="btn btn-outline" href="#live-log" style="display:inline-flex">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg> Live Chit Log &amp; Tally
+    </a>
+    <a class="btn btn-outline" href="#committees" style="display:inline-flex">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="12 8 8 12 12 16 12 8"/></svg> The 4 Committees
+    </a>
+  </div>
+
+  <!-- DELEGATE HANDBOOK FEATURE CARD (Exact portal-inmun26 component) -->
+  <div class="handbook" id="handbook">
+    <div class="handbook-card">
+      <div class="hb-ic">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+        </svg>
+      </div>
+      <div class="hb-txt">
+        <div class="tag">Start here · For every delegate</div>
+        <h2>Delegate Handbook</h2>
+        <p>New to MUN? The one shared guide that takes you from first-timer to confident delegate — how committee works, speaking, chits, documents and how you're scored.</p>
+      </div>
+      <div class="hb-actions">
+        <a class="btn btn-light" href="handbook.html">Read online &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2nd REQUIREMENT: How to access or send Working Papers, Substantive Chits, and POI Chits -->
+  <section class="section" id="how-it-works" style="margin-top:2.8rem">
+    <div class="section-head">
+      <div>
+        <p class="kicker" style="font-size:.78rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700">START HERE · FOR EVERY DELEGATE</p>
+        <h2 style="font-size:1.8rem;color:#fff;font-weight:800;margin-top:.2rem">Chit Submissions &amp; Working Papers</h2>
+      </div>
+      <span class="rule"></span>
+    </div>
+
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10);border-radius:16px;padding:1.8rem 1.6rem;margin-bottom:1.6rem">
+      <p style="color:#cdd9ec;font-size:1rem;line-height:1.7;margin-bottom:.8rem">
+        In committee, debate moves rapidly. When speaking time is limited or you are not recognised on the General Speakers’ List, chits and written documentation are your most powerful tools to drive policy, challenge opposing delegates, and secure committee marks from the dais.
+      </p>
+      <p style="color:var(--gold);font-style:italic;font-size:.95rem;margin:0">
+        Remember the golden rule of MUN: a Best Delegate is a very busy delegate. Make every written contribution count.
+      </p>
+    </div>
+
+    <div class="hub-options three">
+      <article class="hub-opt">
+        <span class="oi">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </span>
+        <span class="tag" style="font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700">01 · DIRECT TO DAIS</span>
+        <h3 style="color:#fff;margin-top:.2rem">Substantive Chits</h3>
+        <p>
+          Send arguments, statistics, policy clarifications, or proposed solutions directly to the Executive Board dais. These chits require no addressee, are recorded straight on your committee’s tally, and earn individual scoring marks. Make them argue concrete solutions rather than just quoting facts.
+        </p>
+        <button class="btn btn-red" type="button" onclick="openGoogleForm('substantiveChit')" style="margin-top:auto">
+          Send Substantive Chit ↗
+        </button>
+      </article>
+
+      <article class="hub-opt">
+        <span class="oi">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/></svg>
+        </span>
+        <span class="tag" style="font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700">02 · VIA EB TO DELEGATE</span>
+        <h3 style="color:#fff;margin-top:.2rem">POI Chits &amp; Replies</h3>
+        <p>
+          Raise a Point of Information or cross-examine another delegation in writing during formal debate. Select your target country; your question is routed and vetted through the Executive Board dais. Recipient delegates can submit their formal written reply right back via the dais.
+        </p>
+        <button class="btn btn-red" type="button" onclick="openGoogleForm('poiChit')" style="margin-top:auto">
+          Send POI Chit / Reply ↗
+        </button>
+      </article>
+
+      <article class="hub-opt">
+        <span class="oi">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </span>
+        <span class="tag" style="font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700">03 · BLOC PROPOSALS</span>
+        <h3 style="color:#fff;margin-top:.2rem">Working Papers &amp; Drafts</h3>
+        <p>
+          Draft your bloc's solutions during unmoderated caucuses. When ready, submit your document file or Google Docs link via the committee submission hub. The EB assigns a formal paper number (e.g. WP 1.0) for introduction, floor questions, and formal debate.
+        </p>
+        <button class="btn btn-red" type="button" onclick="openGoogleForm('workingPaper')" style="margin-top:auto">
+          Submit Working Paper ↗
+        </button>
+      </article>
+    </div>
+  </section>
+
+  <!-- 3rd REQUIREMENT: Delegate Operations Suite (Replacing "Where are you joining us?" with Submit & Track Suite from portal-inmun26) -->
+  <section class="section" id="submit-hub" style="margin-top:3.2rem">
+    <div class="section-head">
+      <div>
+        <p class="kicker" style="font-size:.78rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700">OPERATIONS SUITE</p>
+        <h2 style="font-size:1.8rem;color:#fff;font-weight:800;margin-top:.2rem">Prepare · Submit · Track</h2>
+      </div>
+      <span class="rule"></span>
+    </div>
+
+    <!-- Group 1: Prepare -->
+    <h3 style="color:var(--gold);font-size:1.15rem;margin:1.4rem 0 .9rem;letter-spacing:1px;text-transform:uppercase">1. Prepare</h3>
+    <div class="hub-options three" style="margin-bottom:2rem">
+      <article class="hub-opt">
+        <span class="oi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
+        <h3>Background Guides</h3>
+        <p>The full committee guides — key players, agenda context, historical treaties, and debate fault lines for all 4 committees.</p>
+        <a class="more" href="portal.html?committee=unga">Read guides <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+
+      <article class="hub-opt">
+        <span class="oi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 2h6a1 1 0 0 1 1 1v2H8V3a1 1 0 0 1 1-1z"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 12h6M9 16h6"/></svg></span>
+        <h3>Delegate Worksheet</h3>
+        <p>A printable prep worksheet to plan your country's policy, national red lines, and bloc strategy before committee opens.</p>
+        <a class="more" href="portal.html?committee=unga#tab-worksheet">Open worksheet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+
+      <article class="hub-opt">
+        <span class="oi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+        <h3>Interactive Quizzes</h3>
+        <p>Test yourself on the committee agenda and Rules of Procedure with instant feedback, scoring, and explanations.</p>
+        <a class="more" href="portal.html?committee=unga#tab-quiz">Take quiz <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+    </div>
+
+    <!-- Group 2: Submit -->
+    <h3 style="color:var(--gold);font-size:1.15rem;margin:1.4rem 0 .9rem;letter-spacing:1px;text-transform:uppercase">2. Submit</h3>
+    <div class="hub-options three" style="margin-bottom:2rem">
+      <article class="hub-opt">
+        <span class="oi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+        <h3>Submit a Substantive Chit</h3>
+        <p>Log a substantive chit from your delegation — no addressee needed, goes straight into the committee’s record and marksheets.</p>
+        <span class="more" onclick="openGoogleForm('substantiveChit')" style="cursor:pointer">Send a chit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </article>
+
+      <article class="hub-opt">
+        <span class="oi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/></svg></span>
+        <h3>Submit a POI Chit / Reply</h3>
+        <p>Send a chit to another delegation, routed via the EB dais. Inquire on policy contradictions or reply to a challenge.</p>
+        <span class="more" onclick="openGoogleForm('poiChit')" style="cursor:pointer">Send a chit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </article>
+
+      <article class="hub-opt">
+        <span class="oi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 11v6M9 14l3-3 3 3"/><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span>
+        <h3>Submit Documents Here</h3>
+        <p>Upload your Position Paper, Press Release, Working Paper, or Draft Resolution for formal committee clearance.</p>
+        <span class="more" onclick="openGoogleForm('workingPaper')" style="cursor:pointer">Submit a document <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </article>
+    </div>
+
+    <!-- Group 3: Track -->
+    <h3 style="color:var(--gold);font-size:1.15rem;margin:1.4rem 0 .9rem;letter-spacing:1px;text-transform:uppercase">3. Track</h3>
+    <div class="hub-options three">
+      <article class="hub-opt">
+        <span class="oi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg></span>
+        <h3>Recognition Sheet</h3>
+        <p>Live tally of documents, speeches, points, and chits for your committee by country portfolio. See where marks accumulate.</p>
+        <a class="more" href="submissions.html">View live tally <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+
+      <article class="hub-opt">
+        <span class="oi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+        <h3>Chits</h3>
+        <p>Live log of every chit sent in this committee — the EB’s full record, with a filter for your own delegation.</p>
+        <a class="more" href="#live-log">View chit log <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+
+      <article class="hub-opt">
+        <span class="oi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg></span>
+        <h3>Anonymous Complaints</h3>
+        <p>Direct channel to the Secretariat for confidential grievances, EB issues, and code of conduct inquiries.</p>
+        <a class="more" href="https://forms.gle/rKPKg1oxisKdSiSA6" target="_blank" rel="noopener">Contact Secretariat <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+    </div>
+  </section>
+
+  <!-- THE COMMITTEES SECTION (Exact .grid and .ccard layout from portal-inmun26) -->
+  <section class="section" id="committees" style="margin-top:3.6rem">
+    <div class="section-head">
+      <div>
+        <h2 style="color:#fff;font-size:2rem;font-weight:800">The Committees</h2>
+        <p style="color:#9fb2d4;font-size:1rem;margin-top:.3rem">Four rooms. Different perspectives. One unforgettable conference.</p>
+      </div>
+      <span class="rule"></span>
+    </div>
+
+    <div class="grid">
+      <!-- Committee 01: UNGA -->
+      <article class="ccard">
+        <div class="top">
+          <span class="logo"><span style="font-size:2rem;color:var(--gold)">◎</span></span>
+          <div>
+            <span class="num">01</span>
+            <h3>United Nations General Assembly</h3>
+          </div>
+        </div>
+        <div class="agenda">
+          <span class="lbl">Agenda</span>
+          Addressing the Emerging Geopolitical and Environmental Security Challenges in the Arctic Region, including Militarization, Resource Competition, and Climate Change Impacts.
+        </div>
+        <span class="go">Open committee <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <a aria-label="Open United Nations General Assembly" class="cover-link" href="portal.html?committee=unga"></a>
+      </article>
+
+      <!-- Committee 02: UNCSW -->
+      <article class="ccard">
+        <div class="top">
+          <span class="logo"><span style="font-size:2rem;color:var(--gold)">♀</span></span>
+          <div>
+            <span class="num">02</span>
+            <h3>UN Commission on the Status of Women</h3>
+          </div>
+        </div>
+        <div class="agenda">
+          <span class="lbl">Agenda</span>
+          Combating the Global Exploitation of Women and Girls through Human Trafficking, Organ Trade, and Gender-Based Violence, while Strengthening International Protection and Justice Mechanisms.
+        </div>
+        <span class="go">Open committee <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <a aria-label="Open UN Commission on the Status of Women" class="cover-link" href="portal.html?committee=uncsw"></a>
+      </article>
+
+      <!-- Committee 03: IPL MEGA AUCTION 2028 -->
+      <article class="ccard">
+        <div class="top">
+          <span class="logo"><span style="font-size:2rem;color:var(--gold)">♜</span></span>
+          <div>
+            <span class="num">03</span>
+            <h3>IPL Mega Auction 2028</h3>
+          </div>
+        </div>
+        <div class="agenda">
+          <span class="lbl">Agenda</span>
+          Mega Auction 2028
+        </div>
+        <span class="go">Open committee <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <a aria-label="Open IPL Mega Auction 2028" class="cover-link" href="portal.html?committee=ipl"></a>
+      </article>
+
+      <!-- Committee 04: AIPPM -->
+      <article class="ccard">
+        <div class="top">
+          <span class="logo"><span style="font-size:2rem;color:var(--gold)">▥</span></span>
+          <div>
+            <span class="num">04</span>
+            <h3>All India Political Parties Meet</h3>
+          </div>
+        </div>
+        <div class="agenda">
+          <span class="lbl">Agenda</span>
+          Reviewing and Strengthening the Implementation of the POCSO Act, 2012, while Balancing Child Protection, Juvenile Justice, and Safeguards Against Legal Misuse.
+        </div>
+        <span class="go">Open committee <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <a aria-label="Open All India Political Parties Meet" class="cover-link" href="portal.html?committee=aippm"></a>
+      </article>
+    </div>
+  </section>
+
+  <!-- LIVE CHIT LOG & RECOGNITION SHEET -->
+  <section class="section" id="live-log" style="margin-top:3.6rem">
+    <div class="section-head">
+      <div>
+        <p class="kicker" style="font-size:.78rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700">LIVE DAIS LOG</p>
+        <h2 style="font-size:1.8rem;color:#fff;font-weight:800;margin-top:.2rem">Committee Recognition &amp; Chit Tracker</h2>
+      </div>
+      <span class="rule"></span>
+    </div>
+
+    <!-- Filters Bar -->
+    <div class="filters" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10);border-radius:14px;padding:1.4rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:flex-end">
+      <label style="flex:1;min-width:180px;color:#aebed0;font-size:.82rem">
+        Filter by Committee:
+        <select id="filterCommittee" style="background:#0c1830;color:#fff;border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:.6rem .8rem;margin-top:.4rem;width:100%">
+          <option value="all">All Committees (4)</option>
+          <option value="unga">UNGA — General Assembly</option>
+          <option value="uncsw">UNCSW — Status of Women</option>
+          <option value="ipl">IPL Mega Auction 2028</option>
+          <option value="aippm">AIPPM — Political Parties</option>
+        </select>
+      </label>
+
+      <label style="flex:1;min-width:180px;color:#aebed0;font-size:.82rem">
+        Filter by Chit Type:
+        <select id="filterType" style="background:#0c1830;color:#fff;border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:.6rem .8rem;margin-top:.4rem;width:100%">
+          <option value="all">All Types</option>
+          <option value="substantive">Substantive Chits</option>
+          <option value="poi">POI Chits &amp; Replies</option>
+          <option value="document">Working Papers &amp; Documents</option>
+        </select>
+      </label>
+
+      <label style="flex:1.8;min-width:240px;color:#aebed0;font-size:.82rem">
+        Search Delegation / Subject:
+        <input type="text" id="searchQuery" placeholder="Search country, team, or keywords (e.g. Argentina, Mexico, CSK)..." style="background:#0c1830;color:#fff;border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:.6rem .8rem;margin-top:.4rem;width:100%">
+      </label>
+
+      <button class="btn btn-red" type="button" onclick="openGoogleForm('substantiveChit')" style="height:42px;flex-shrink:0">
+        + Submit Chit
+      </button>
+    </div>
+
+    <!-- Live Chit Table -->
+    <div class="table-wrap" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.10);border-radius:14px;overflow-x:auto;margin-top:1.2rem">
+      <table style="width:100%;border-collapse:collapse;color:#cad6ea">
+        <thead>
+          <tr style="background:#0b1933;border-bottom:1px solid rgba(255,255,255,.12)">
+            <th style="padding:14px;text-align:left;color:var(--gold);font-size:.82rem;text-transform:uppercase">Time &amp; ID</th>
+            <th style="padding:14px;text-align:left;color:var(--gold);font-size:.82rem;text-transform:uppercase">Committee</th>
+            <th style="padding:14px;text-align:left;color:var(--gold);font-size:.82rem;text-transform:uppercase">Type</th>
+            <th style="padding:14px;text-align:left;color:var(--gold);font-size:.82rem;text-transform:uppercase">From / To</th>
+            <th style="padding:14px;text-align:left;color:var(--gold);font-size:.82rem;text-transform:uppercase;min-width:320px">Subject &amp; Message</th>
+            <th style="padding:14px;text-align:left;color:var(--gold);font-size:.82rem;text-transform:uppercase">Status</th>
+          </tr>
+        </thead>
+        <tbody id="chitsTableBody">
+          <!-- Populated by app.js -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- AWARDS & RECOGNITION SECTION -->
+  <section class="section" id="awards" style="margin-top:3.6rem">
+    <div style="background:linear-gradient(135deg,#0c1d3c,#081328);border:1px solid rgba(201,168,76,.35);border-radius:18px;padding:2.4rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center">
+      <div>
+        <p class="kicker" style="font-size:.78rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700">MAKE YOUR MARK</p>
+        <h2 style="font-size:2.2rem;color:#fff;font-weight:800;line-height:1.15;margin-top:.3rem">
+          Debate with purpose.<br><em style="color:var(--gold);font-style:normal">Compete for recognition.</em>
+        </h2>
+        <p style="color:#9fb2d4;font-size:1rem;margin-top:.9rem;line-height:1.6">
+          Bring your research, your conviction, and your best speech. Cash awards, mementos, and verified merit citations await outstanding delegates in every committee.
+        </p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:1rem">
+        <div style="background:rgba(255,255,255,.05);border:1px solid rgba(201,168,76,.3);border-radius:12px;padding:1.2rem 1.4rem;display:flex;align-items:center;gap:1.2rem">
+          <span style="font-size:2.4rem;color:var(--gold)">✦</span>
+          <div>
+            <span style="display:block;font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:#9fb2d4">BEST DELEGATE</span>
+            <strong style="font-size:2rem;color:#fff;font-weight:800">₹4,000</strong>
+          </div>
+          <span style="margin-left:auto;font-size:.75rem;letter-spacing:1px;color:var(--gold);font-weight:700">CASH PRIZE</span>
+        </div>
+
+        <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:1.2rem 1.4rem;display:flex;align-items:center;gap:1.2rem">
+          <span style="font-size:2.4rem;color:#b4c4db">✧</span>
+          <div>
+            <span style="display:block;font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:#9fb2d4">HIGH COMMENDATION</span>
+            <strong style="font-size:2rem;color:#fff;font-weight:800">₹2,000</strong>
+          </div>
+          <span style="margin-left:auto;font-size:.75rem;letter-spacing:1px;color:#b4c4db;font-weight:700">CASH PRIZE</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER (Exact portal-inmun26 structure) -->
+  <footer>
+    <div class="wrap">
+      <div style="display:flex;align-items:center;gap:14px">
+        <img src="gtmun-logo.png" alt="GTMUN 2026" style="height:54px;width:auto;border-radius:8px;background:#fff;padding:2px">
+        <div>
+          <div style="font-family:var(--font-head);font-size:1.2rem;color:#fff;font-weight:700">GTMUN’26</div>
+          <div class="small">Global Teens Model United Nations · 14–15 November 2026</div>
+        </div>
+      </div>
+      <div class="small">
+        <a href="portal.html?committee=unga">Committee Portals</a> &middot; 
+        <a href="handbook.html">Delegate Handbook</a> &middot; 
+        <a href="https://forms.gle/rKPKg1oxisKdSiSA6" target="_blank" rel="noopener">Anonymous Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================= -->
+  <!-- WELCOME MODAL (Matches INMUN 2026 landing modal)               -->
+  <!-- ============================================================= -->
+  <div class="modal-overlay" id="welcomeModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="wm-title">
+      <button class="modal-x" id="wmClose" type="button" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="modal-kicker">Global Teens Model United Nations 2026</div>
+      <h2 id="wm-title">Delegate Portal is Live!</h2>
+      <p>Submit substantive chits to your EB dais, pass cross-delegation POIs, upload working papers, and access committee background guides.</p>
+      <div class="modal-actions">
+        <button class="btn btn-red" type="button" onclick="openGoogleForm('substantiveChit')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Submit a Chit
+        </button>
+      </div>
+      <button class="modal-dismiss" id="wmDismiss" type="button">Start exploring &rarr;</button>
+    </div>
+  </div>
+
+  <!-- Scripts (Modeled on portal-inmun26) -->
+  <script src="js/countdown.js"></script>
+  <script src="js/landing.js"></script>
+  <script src="js/reveal.js"></script>
+  <script src="js/site.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recognition Sheet — GTMUN’26</title>
+  <link rel="icon" type="image/png" href="gtmun-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700;8..60,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="portal.css">
+  <script src="js/chit-countries.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body class="cine">
+
+  <!-- MASTHEAD / HEADER (Matching 1:1 with portal-inmun26) -->
+  <header class="masthead">
+    <div class="wrap">
+      <a class="lockup" href="home.html">
+        <img class="ryan-emblem" src="gtmun-logo.png" alt="GTMUN 2026" style="height:48px;width:auto;border-radius:8px;background:#fff;padding:2px">
+        <span class="txt">
+          <b>GTMUN’26</b>
+          <span>Global Teens Model United Nations 2026</span>
+        </span>
+      </a>
+
+      <input type="checkbox" id="mnav" class="nav-toggle" aria-label="Toggle navigation menu">
+      <label for="mnav" class="nav-burger" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </label>
+
+      <nav class="mh-nav">
+        <div class="nav-pill">
+          <a href="home.html">Participation Guide</a>
+          <a href="handbook.html">Handbook</a>
+          <a href="portal.html?committee=unga">Committees</a>
+        </div>
+        <div class="nav-submit">
+          <button type="button" class="submit-btn" aria-haspopup="true">
+            Submit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="submit-menu">
+            <a href="javascript:void(0)" onclick="openGoogleForm('substantiveChit')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Substantive Chit
+            </a>
+            <a href="javascript:void(0)" onclick="openGoogleForm('poiChit', 'unga')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/></svg> UNGA POI Chit
+            </a>
+            <a href="javascript:void(0)" onclick="openGoogleForm('poiChit', 'uncsw')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/></svg> UNCSW POI Chit
+            </a>
+            <a href="javascript:void(0)" onclick="openGoogleForm('workingPaper')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg> Submit Documents
+            </a>
+            <a href="https://forms.gle/rKPKg1oxisKdSiSA6" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg> Anonymous Complaints
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- BREADCRUMB -->
+  <div class="crumb">
+    <a href="home.html">Home</a>
+    <span>&rsaquo;</span>
+    <a id="crumbCommLink" href="portal.html?committee=unga"><span id="crumbCommName">United Nations General Assembly</span></a>
+    <span>&rsaquo;</span>
+    Recognition Sheet
+  </div>
+
+  <!-- HERO SECTION (Exact INMUN 2026 header layout from screenshot) -->
+  <section class="chero">
+    <div class="wrap">
+      <div class="kicker">LIVE &middot; DOCUMENT TRACKER</div>
+      <h1 id="submCommHeading">United Nations General Assembly</h1>
+      <p class="agenda" id="submCommAgenda">Documents, speeches, points and chits so far, by country.</p>
+      <div class="meta">
+        <span class="subm-live"><i class="subm-dot"></i> Live</span>
+        <span id="submUpdatedText">Updated just now</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN SUBMISSION & RECOGNITION CONTAINER -->
+  <div class="subm-wrap">
+
+    <!-- 4 STAT SUMMARY PILLS (1:1 with Screenshot) -->
+    <div class="subm-stats">
+      <div class="subm-stat">
+        <div class="n" id="statSpeeches">0</div>
+        <div class="l">Speeches</div>
+      </div>
+      <div class="subm-stat">
+        <div class="n" id="statPOI">0</div>
+        <div class="l">POI</div>
+      </div>
+      <div class="subm-stat">
+        <div class="n" id="statDocs">0</div>
+        <div class="l">Docs</div>
+      </div>
+      <div class="subm-stat" id="statChitsCard">
+        <div class="n" id="statChits">0</div>
+        <div class="l">Chits</div>
+      </div>
+    </div>
+
+    <!-- CONTROLS & COMMITTEE SELECTOR -->
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10);border-radius:12px;padding:1.1rem 1.3rem;margin-bottom:1.4rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem">
+      <div style="display:flex;align-items:center;gap:1rem;flex:1;flex-wrap:wrap;min-width:280px">
+        <label style="color:#a8b8d2;font-size:.85rem;display:flex;align-items:center;gap:.6rem">
+          <span>Committee:</span>
+          <select id="commSelect" style="background:#0c1830;color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:.5rem .8rem;font-size:.85rem">
+            <option value="unga">01 · UNGA — General Assembly</option>
+            <option value="uncsw">02 · UNCSW — Status of Women</option>
+            <option value="ipl">03 · IPL Mega Auction 2028</option>
+            <option value="aippm">04 · AIPPM — Political Parties</option>
+          </select>
+        </label>
+        <input type="text" id="submSearchInput" placeholder="Filter by country or portfolio..." style="background:#0c1830;color:#fff;border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:.5rem .8rem;font-size:.85rem;flex:1;max-width:320px">
+      </div>
+
+      <div style="display:flex;gap:.8rem;align-items:center">
+        <button class="btn btn-red" id="submBtnSubmitChit" type="button" onclick="openGoogleForm('substantiveChit')">+ Submit Chit</button>
+        <button class="btn" id="submBtnSubmitDoc" type="button" onclick="openGoogleForm('workingPaper')" style="display:none;background:#2563eb;color:#fff;border:none;border-radius:8px;padding:.55rem 1rem;font-size:.85rem;font-weight:600;cursor:pointer">+ Submit Document</button>
+        <a class="btn btn-outline" id="portalBackLink" href="portal.html?committee=unga">← Return to Committee Hub</a>
+      </div>
+    </div>
+
+    <!-- RECOGNITION TABLE (Exact 11 Columns from Screenshot) -->
+    <div class="subm-tablewrap">
+      <table class="subm-table recog-table" id="recogTable">
+        <thead>
+          <tr id="recogHeaderRow">
+            <th id="thPortfolioCol" style="text-align:left;padding-left:14px">Country</th>
+            <th>Position Paper</th>
+            <th>Press Release</th>
+            <th>Working Paper</th>
+            <th>Speech</th>
+            <th>POI</th>
+            <th>Motions</th>
+            <th>POO (Ruled)</th>
+            <th>Yields</th>
+            <th>Substantive Chit</th>
+            <th>POI Chits</th>
+          </tr>
+        </thead>
+        <tbody id="recogTableBody">
+          <!-- Populated dynamically with full committee roster -->
+        </tbody>
+        <tfoot>
+          <tr class="subm-total-row" id="recogTotalRow">
+            <!-- Totals computed dynamically -->
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- COMMITTEE CHITS & INQUIRIES TRACKER -->
+    <div id="submDossierSection" style="margin-top:2.4rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.10)">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.4rem;flex-wrap:wrap;gap:1rem">
+        <div>
+          <div class="kicker" style="font-size:.74rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:700">COMMITTEE RECORDS · CHIT TRACKER</div>
+          <h2 style="font-size:1.85rem;color:#fff;font-weight:800;margin:.25rem 0 .35rem">Chits &amp; Inquiries</h2>
+          <p style="color:#9fb2d4;font-size:.92rem;margin:0">Search any delegation or select from the table above to view sent chits and received inquiries.</p>
+        </div>
+        <div style="display:flex;gap:.75rem;align-items:center;flex-wrap:wrap">
+          <button class="btn btn-red" type="button" onclick="openGoogleForm('substantiveChit')">+ Submit Chit</button>
+          <button class="btn btn-outline" id="submDossierBtnPoi" type="button" onclick="openGoogleForm('poiChit', getParam('c'))">+ Submit POI Chit</button>
+        </div>
+      </div>
+
+      <!-- Toolbar & Delegation Filter -->
+      <div class="chit-tracker-toolbar">
+        <div class="chit-toolbar-grid">
+          <div>
+            <label class="chit-label" for="submDossierCountrySelect">Select Delegation:</label>
+            <select id="submDossierCountrySelect" class="chit-select">
+              <option value="">— All Committee Delegations —</option>
+            </select>
+          </div>
+          <div>
+            <label class="chit-label" for="submDossierSearchInput">Quick Filter:</label>
+            <input type="text" id="submDossierSearchInput" class="chit-input" placeholder="Type country name...">
+          </div>
+          <div style="padding-top:19px">
+            <button class="chit-btn-reset" id="submDossierResetBtn" type="button">Reset</button>
+          </div>
+        </div>
+
+        <!-- Segmented Filter Tabs -->
+        <div class="chit-seg-nav">
+          <button class="chit-tab-btn active" data-subm-filter="all" id="submPillAll">All Records <span class="chit-tab-count" id="submCountAll">0</span></button>
+          <button class="chit-tab-btn" data-subm-filter="sent" id="submPillSent">Sent Chits <span class="chit-tab-count" id="submCountSent">0</span></button>
+          <button class="chit-tab-btn" data-subm-filter="incoming" id="submPillIncoming">Received Inquiries <span class="chit-tab-count" id="submCountIncoming">0</span></button>
+          <button class="chit-tab-btn" data-subm-filter="docs" id="submPillDocs">Documents <span class="chit-tab-count" id="submCountDocs">0</span></button>
+        </div>
+      </div>
+
+      <!-- Delegation Profile Bar -->
+      <div id="submDossierSummaryBanner" class="chit-delegation-bar" style="display:none">
+        <div>
+          <h3 class="chit-del-name" id="submDossierTitle">Delegation</h3>
+          <div class="chit-del-comm" id="submDossierCommTag">Committee Record</div>
+        </div>
+        <div class="chit-metrics-row">
+          <div class="chit-metric-box">
+            <div class="chit-metric-val" id="submDossierStatSent">0</div>
+            <div class="chit-metric-lbl">Sent Chits</div>
+          </div>
+          <div class="chit-metric-box">
+            <div class="chit-metric-val" id="submDossierStatIncoming">0</div>
+            <div class="chit-metric-lbl">Received Inquiries</div>
+          </div>
+          <div class="chit-metric-box">
+            <div class="chit-metric-val" id="submDossierStatDocs">0</div>
+            <div class="chit-metric-lbl">Documents</div>
+          </div>
+          <div class="chit-metric-box">
+            <div class="chit-metric-val" style="color:var(--gold)" id="submDossierStatPoints">0</div>
+            <div class="chit-metric-lbl" style="color:var(--gold)">Tally Points</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feed Container -->
+      <div id="submDossierFeed" style="display:flex;flex-direction:column;gap:.75rem">
+        <!-- Populated dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <div style="display:flex;align-items:center;gap:14px">
+        <img src="gtmun-logo.png" alt="GTMUN 2026" style="height:54px;width:auto;border-radius:8px;background:#fff;padding:2px">
+        <div>
+          <div style="font-family:var(--font-head);font-size:1.2rem;color:#fff;font-weight:700">GTMUN’26</div>
+          <div class="small">Global Teens Model United Nations · 14–15 November 2026</div>
+        </div>
+      </div>
+      <div class="small">
+        <a href="home.html">Home</a> &middot; 
+        <a href="handbook.html">Delegate Handbook</a> &middot; 
+        <a href="https://forms.gle/rKPKg1oxisKdSiSA6" target="_blank" rel="noopener">Anonymous Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Recognition Sheet Dynamic Engine -->
+  <script>
+    const COMM_INFO = {
+      unga: { 
+        name: "United Nations General Assembly", 
+        code: "UNGA", 
+        header: "Country",
+        agenda: "Addressing the Emerging Geopolitical and Environmental Security Challenges in the Arctic Region, including Militarization, Resource Competition, and Climate Change Impacts."
+      },
+      uncsw: { 
+        name: "UN Commission on the Status of Women", 
+        code: "UNCSW", 
+        header: "Country",
+        agenda: "Combating the Global Exploitation of Women and Girls through Human Trafficking, Organ Trade, and Gender-Based Violence, while Strengthening International Protection and Justice Mechanisms."
+      },
+      ipl: { 
+        name: "IPL Mega Auction 2028", 
+        code: "IPL", 
+        header: "Franchise / Team",
+        agenda: "Mega Auction 2028"
+      },
+      aippm: { 
+        name: "All India Political Parties Meet", 
+        code: "AIPPM", 
+        header: "Leader / Portfolio",
+        agenda: "Reviewing and Strengthening the Implementation of the POCSO Act, 2012, while Balancing Child Protection, Juvenile Justice, and Safeguards Against Legal Misuse."
+      }
+    };
+
+    const ALL_COLUMNS = [
+      "Position Paper",
+      "Press Release",
+      "Working Paper",
+      "Speech",
+      "POI",
+      "Motions",
+      "POO (Ruled)",
+      "Yields",
+      "Substantive Chit",
+      "POI Chits"
+    ];
+
+    function getParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return (urlParams.get(param) || 'unga').toLowerCase();
+    }
+
+    function initTallyPage() {
+      let commKey = getParam('c');
+      if (!COMM_INFO[commKey]) commKey = 'unga';
+
+      const comm = COMM_INFO[commKey];
+      const isChitless = (commKey === 'ipl' || commKey === 'aippm');
+
+      document.title = comm.name + " — Recognition Sheet · GTMUN’26";
+      document.getElementById('submCommHeading').textContent = comm.name;
+      document.getElementById('submCommAgenda').textContent = "Agenda: " + comm.agenda;
+      document.getElementById('crumbCommName').textContent = comm.name;
+      document.getElementById('crumbCommLink').href = 'portal.html?committee=' + commKey;
+      document.getElementById('portalBackLink').href = 'portal.html?committee=' + commKey;
+      document.getElementById('thPortfolioCol').textContent = comm.header;
+
+      // Handle Chitless controls and stat pills
+      const statChitsCard = document.getElementById('statChitsCard');
+      const btnSubmitChit = document.getElementById('submBtnSubmitChit');
+      const btnSubmitDoc = document.getElementById('submBtnSubmitDoc');
+
+      if (isChitless) {
+        if (statChitsCard) statChitsCard.style.display = 'none';
+        if (btnSubmitChit) btnSubmitChit.style.display = 'none';
+        if (btnSubmitDoc) btnSubmitDoc.style.display = 'inline-block';
+      } else {
+        if (statChitsCard) statChitsCard.style.display = '';
+        if (btnSubmitChit) btnSubmitChit.style.display = 'inline-block';
+        if (btnSubmitDoc) btnSubmitDoc.style.display = 'none';
+      }
+
+      // Filter active columns (omit chits for IPL & AIPPM)
+      const activeColumns = isChitless 
+        ? ALL_COLUMNS.filter(c => c !== 'Substantive Chit' && c !== 'POI Chits')
+        : ALL_COLUMNS;
+
+      // Update table header row
+      const headerRow = document.getElementById('recogHeaderRow');
+      if (headerRow) {
+        headerRow.innerHTML = `
+          <th id="thPortfolioCol" style="text-align:left;padding-left:14px">${escapeHtml(comm.header)}</th>
+          ${activeColumns.map(col => `<th>${escapeHtml(col)}</th>`).join('')}
+        `;
+      }
+
+      const selectEl = document.getElementById('commSelect');
+      if (selectEl) {
+        selectEl.value = commKey;
+        selectEl.onchange = function(e) {
+          window.location.search = '?c=' + e.target.value;
+        };
+      }
+
+      const rosterPairs = (window.GTMUN_COMMITTEE_COUNTRIES && window.GTMUN_COMMITTEE_COUNTRIES[commKey]) || [];
+      const roster = rosterPairs.map(p => Array.isArray(p) ? p[0] : p);
+
+      const tallyData = {};
+      roster.forEach(name => {
+        tallyData[name] = {};
+        activeColumns.forEach(col => { tallyData[name][col] = 0; });
+      });
+
+      // Fetch live submissions if any
+      const stored = (window.getStoredChits && window.getStoredChits()) || [];
+      stored.forEach(sub => {
+        if (sub.committee && sub.committee !== 'all' && sub.committee.toLowerCase() !== commKey && sub.committee.toLowerCase() !== comm.code.toLowerCase()) {
+          return;
+        }
+        // STRICT RULE: Award points ONLY to the sending country (sub.from)!
+        // NEVER award points to the target country (sub.to) or loose random matches!
+        const fromCountry = sub.from;
+        if (!fromCountry) return;
+
+        const matched = window.findMatchingRosterCountry ? window.findMatchingRosterCountry(fromCountry, roster) : null;
+        if (!matched) return;
+
+        if (matched) {
+          const typeStr = String(sub.type || '').toLowerCase();
+          if (typeStr.includes('position')) tallyData[matched]['Position Paper']++;
+          else if (typeStr.includes('press')) tallyData[matched]['Press Release']++;
+          else if (typeStr.includes('working') || typeStr.includes('draft') || typeStr.includes('paper')) tallyData[matched]['Working Paper']++;
+          else if (typeStr.includes('speech')) tallyData[matched]['Speech']++;
+          else if (!isChitless && (typeStr.includes('poi chit') || (typeStr.includes('poi') && typeStr.includes('chit')))) tallyData[matched]['POI Chits']++;
+          else if (typeStr.includes('poi')) tallyData[matched]['POI']++;
+          else if (typeStr.includes('motion')) tallyData[matched]['Motions']++;
+          else if (typeStr.includes('poo') || typeStr.includes('order')) tallyData[matched]['POO (Ruled)']++;
+          else if (typeStr.includes('yield')) tallyData[matched]['Yields']++;
+          else if (!isChitless && typeStr.includes('substantive')) tallyData[matched]['Substantive Chit']++;
+          else if (!isChitless) tallyData[matched]['Substantive Chit']++;
+        }
+      });
+
+      function renderTable(filterQuery = '') {
+        const tbody = document.getElementById('recogTableBody');
+        const tfoot = document.getElementById('recogTotalRow');
+        if (!tbody) return;
+
+        const q = filterQuery.trim().toLowerCase();
+        const filteredRoster = roster.filter(r => !q || r.toLowerCase().includes(q));
+
+        const totals = {};
+        activeColumns.forEach(col => { totals[col] = 0; });
+
+        roster.forEach(name => {
+          activeColumns.forEach(col => {
+            totals[col] += tallyData[name][col] || 0;
+          });
+        });
+
+        document.getElementById('statSpeeches').textContent = totals['Speech'] || 0;
+        document.getElementById('statPOI').textContent = totals['POI'] || 0;
+        document.getElementById('statDocs').textContent = (totals['Position Paper'] || 0) + (totals['Press Release'] || 0) + (totals['Working Paper'] || 0);
+        if (!isChitless && statChitsCard) {
+          document.getElementById('statChits').textContent = (totals['Substantive Chit'] || 0) + (totals['POI Chits'] || 0);
+        }
+
+        if (filteredRoster.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="${activeColumns.length + 1}" style="text-align:center;padding:30px;color:var(--muted)">No matching delegations found.</td></tr>`;
+        } else {
+          tbody.innerHTML = filteredRoster.map(name => {
+            const counts = tallyData[name];
+            return `
+              <tr>
+                <td class="chit-clickable-country" onclick="jumpToSubmDossier('${escapeHtml(name)}')" title="View chits for ${escapeHtml(name)}">
+                  <span style="font-weight:600;color:#fff">${escapeHtml(name)}</span>
+                </td>
+                ${activeColumns.map(col => `<td>${counts[col] || 0}</td>`).join('')}
+              </tr>
+            `;
+          }).join('');
+        }
+
+        if (tfoot) {
+          tfoot.innerHTML = `
+            <td>Total</td>
+            ${activeColumns.map(col => `<td>${totals[col] || 0}</td>`).join('')}
+          `;
+        }
+      }
+
+      renderTable();
+
+      const searchInput = document.getElementById('submSearchInput');
+      if (searchInput) {
+        searchInput.oninput = (e) => renderTable(e.target.value);
+      }
+
+      // Initialize Dossier for submissions page
+      renderSubmDossier(commKey);
+    }
+
+    let submCurrentCountry = '';
+    let submCurrentFilter = 'all';
+    let submCurrentQuery = '';
+    let submListenersInit = false;
+
+    function renderSubmDossier(commKey, presetCountry, presetFilter, presetQuery) {
+      if (!commKey) commKey = getParam('c');
+      if (presetCountry !== undefined) submCurrentCountry = presetCountry;
+      if (presetFilter !== undefined) submCurrentFilter = presetFilter;
+      if (presetQuery !== undefined) submCurrentQuery = presetQuery;
+
+      const feedEl = document.getElementById('submDossierFeed');
+      const selectEl = document.getElementById('submDossierCountrySelect');
+      const searchInput = document.getElementById('submDossierSearchInput');
+      const summaryBanner = document.getElementById('submDossierSummaryBanner');
+      if (!feedEl) return;
+
+      const comm = COMM_INFO[commKey] || COMM_INFO.unga;
+      const rosterPairs = (window.GTMUN_COMMITTEE_COUNTRIES && window.GTMUN_COMMITTEE_COUNTRIES[commKey]) || [];
+      const roster = rosterPairs.map(p => Array.isArray(p) ? p[0] : p);
+
+      if (selectEl && (!selectEl.dataset.commKey || selectEl.dataset.commKey !== commKey)) {
+        selectEl.dataset.commKey = commKey;
+        selectEl.innerHTML = `<option value="">— All Committee Delegations (${roster.length}) —</option>` +
+          roster.map(r => `<option value="${escapeHtml(r)}">${escapeHtml(r)}</option>`).join('');
+      }
+      if (selectEl && submCurrentCountry) selectEl.value = submCurrentCountry;
+      else if (selectEl && !submCurrentCountry) selectEl.value = '';
+      if (searchInput && submCurrentQuery) searchInput.value = submCurrentQuery;
+
+      if (!submListenersInit) {
+        submListenersInit = true;
+        if (selectEl) {
+          selectEl.addEventListener('change', (e) => {
+            submCurrentCountry = e.target.value;
+            if (searchInput) searchInput.value = '';
+            submCurrentQuery = '';
+            renderSubmDossier(getParam('c'));
+          });
+        }
+        if (searchInput) {
+          searchInput.addEventListener('input', (e) => {
+            submCurrentQuery = e.target.value.trim();
+            if (submCurrentQuery && selectEl) {
+              const optMatch = Array.from(selectEl.options).find(o => o.value.toLowerCase() === submCurrentQuery.toLowerCase());
+              if (optMatch) {
+                submCurrentCountry = optMatch.value;
+                selectEl.value = optMatch.value;
+              }
+            }
+            renderSubmDossier(getParam('c'));
+          });
+        }
+        const resetBtn = document.getElementById('submDossierResetBtn');
+        if (resetBtn) {
+          resetBtn.addEventListener('click', () => {
+            submCurrentCountry = '';
+            submCurrentQuery = '';
+            submCurrentFilter = 'all';
+            if (selectEl) selectEl.value = '';
+            if (searchInput) searchInput.value = '';
+            renderSubmDossier(getParam('c'));
+          });
+        }
+        document.querySelectorAll('[data-subm-filter]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            submCurrentFilter = btn.getAttribute('data-subm-filter') || 'all';
+            renderSubmDossier(getParam('c'));
+          });
+        });
+      }
+
+      const allSubmissions = (window.getStoredChits && window.getStoredChits()) || [];
+      const commItems = allSubmissions.filter(item => {
+        if (!item.committee || item.committee === 'all') return true;
+        const cLower = String(item.committee).toLowerCase();
+        return cLower === commKey.toLowerCase() || cLower === comm.code.toLowerCase();
+      });
+
+      const targetCountry = submCurrentCountry || (submCurrentQuery ? submCurrentQuery : null);
+
+      let sentItems = [];
+      let incomingItems = [];
+      let docItems = [];
+      let displayItems = [];
+
+      if (targetCountry) {
+        sentItems = commItems.filter(item => window.isCountryMatch ? window.isCountryMatch(item.from, targetCountry) : String(item.from || '').toLowerCase().includes(targetCountry.toLowerCase()));
+        incomingItems = commItems.filter(item => window.isCountryMatch ? window.isCountryMatch(item.to, targetCountry) : String(item.to || '').toLowerCase().includes(targetCountry.toLowerCase()));
+        docItems = sentItems.filter(item => {
+          const t = String(item.type || '').toLowerCase();
+          return t.includes('paper') || t.includes('release') || t.includes('doc') || t.includes('resolution');
+        });
+
+        if (submCurrentFilter === 'sent') displayItems = sentItems;
+        else if (submCurrentFilter === 'incoming') displayItems = incomingItems;
+        else if (submCurrentFilter === 'docs') displayItems = docItems;
+        else {
+          const ids = new Set();
+          displayItems = [];
+          sentItems.forEach(item => { ids.add(item.id || item); displayItems.push(item); });
+          incomingItems.forEach(item => {
+            if (!ids.has(item.id || item)) {
+              ids.add(item.id || item);
+              displayItems.push(item);
+            }
+          });
+        }
+      } else {
+        sentItems = commItems.filter(item => Boolean(item.from));
+        incomingItems = commItems.filter(item => Boolean(item.to && item.to.toLowerCase() !== 'executive board' && item.to.toLowerCase() !== 'dais'));
+        docItems = commItems.filter(item => {
+          const t = String(item.type || '').toLowerCase();
+          return t.includes('paper') || t.includes('release') || t.includes('doc');
+        });
+
+        if (submCurrentFilter === 'sent') displayItems = sentItems;
+        else if (submCurrentFilter === 'incoming') displayItems = incomingItems;
+        else if (submCurrentFilter === 'docs') displayItems = docItems;
+        else displayItems = commItems;
+      }
+
+      const elCountAll = document.getElementById('submCountAll');
+      const elCountSent = document.getElementById('submCountSent');
+      const elCountIncoming = document.getElementById('submCountIncoming');
+      const elCountDocs = document.getElementById('submCountDocs');
+
+      const totalFilteredCount = targetCountry ? (new Set([...sentItems, ...incomingItems])).size : commItems.length;
+      if (elCountAll) elCountAll.textContent = totalFilteredCount;
+      if (elCountSent) elCountSent.textContent = sentItems.length;
+      if (elCountIncoming) elCountIncoming.textContent = incomingItems.length;
+      if (elCountDocs) elCountDocs.textContent = docItems.length;
+
+      document.querySelectorAll('[data-subm-filter]').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-subm-filter') === submCurrentFilter);
+      });
+
+      if (summaryBanner) {
+        if (targetCountry) {
+          summaryBanner.style.display = 'flex';
+          const elTitle = document.getElementById('submDossierTitle');
+          const elCommTag = document.getElementById('submDossierCommTag');
+          const elStatSent = document.getElementById('submDossierStatSent');
+          const elStatIncoming = document.getElementById('submDossierStatIncoming');
+          const elStatDocs = document.getElementById('submDossierStatDocs');
+          const elStatPoints = document.getElementById('submDossierStatPoints');
+
+          if (elTitle) elTitle.textContent = targetCountry;
+          if (elCommTag) elCommTag.textContent = `${comm.code} · ${comm.name}`;
+          if (elStatSent) elStatSent.textContent = sentItems.length;
+          if (elStatIncoming) elStatIncoming.textContent = incomingItems.length;
+          if (elStatDocs) elStatDocs.textContent = docItems.length;
+          if (elStatPoints) elStatPoints.textContent = sentItems.length;
+        } else {
+          summaryBanner.style.display = 'none';
+        }
+      }
+
+      if (displayItems.length === 0) {
+        feedEl.innerHTML = `
+          <div class="chit-empty-panel">
+            <p style="font-size:1.05rem;font-weight:700;color:#fff;margin:0 0 6px">No Chits Recorded</p>
+            <p style="font-size:0.86rem;color:#8fa2bd;max-width:440px;margin:0 auto 16px">
+              ${targetCountry 
+                ? `No records found for ${escapeHtml(targetCountry)} under the active filter.`
+                : `No chits currently logged for ${comm.name}. Click below to pass a chit.`}
+            </p>
+            <button class="btn btn-red" type="button" onclick="openGoogleForm('substantiveChit')">+ Submit Chit</button>
+          </div>
+        `;
+        return;
+      }
+
+      feedEl.innerHTML = displayItems.map(c => {
+        const isSent = targetCountry && window.isCountryMatch ? window.isCountryMatch(c.from, targetCountry) : true;
+        const isIncoming = targetCountry && window.isCountryMatch && window.isCountryMatch(c.to, targetCountry);
+        const typeStr = String(c.type || '').toLowerCase();
+        const isPoi = typeStr.includes('poi');
+        const isDoc = typeStr.includes('paper') || typeStr.includes('doc') || typeStr.includes('release') || typeStr.includes('resolution');
+
+        let tagClass = 'chit-tag-pill substantive';
+        let tagLabel = 'Substantive Chit';
+        let routeHtml = '';
+
+        if (isDoc) {
+          tagClass = 'chit-tag-pill doc';
+          tagLabel = c.type || 'Document';
+          routeHtml = `<span class="chit-route-line">Submitted by <strong style="color:#fff">${escapeHtml(c.from)}</strong> → <strong style="color:var(--gold)">Executive Board</strong></span>`;
+        } else if (isPoi) {
+          tagClass = 'chit-tag-pill poi';
+          tagLabel = 'Point of Information';
+          // RULE: POI chits are NEVER to Executive Board! They are strictly Delegate to Delegate!
+          const targetDelegate = c.to && c.to.toLowerCase() !== 'executive board' && c.to.toLowerCase() !== 'dais' ? c.to : 'Target Delegation';
+          if (isIncoming) {
+            routeHtml = `<span class="chit-route-line">Inquiry directed to you from <strong style="color:var(--gold)">${escapeHtml(c.from)}</strong></span>`;
+          } else {
+            routeHtml = `<span class="chit-route-line">From <strong style="color:#fff">${escapeHtml(c.from)}</strong> → To <strong style="color:var(--gold)">${escapeHtml(targetDelegate)}</strong></span>`;
+          }
+        } else {
+          tagClass = 'chit-tag-pill substantive';
+          tagLabel = 'Substantive Chit';
+          routeHtml = `<span class="chit-route-line">Submitted by <strong style="color:#fff">${escapeHtml(c.from)}</strong> → <strong style="color:var(--gold)">Executive Board</strong></span>`;
+        }
+
+        return `
+          <article class="chit-dispatch-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.6rem;flex-wrap:wrap;gap:0.5rem">
+              <div style="display:flex;align-items:center;gap:0.65rem;flex-wrap:wrap">
+                <span class="${tagClass}">${escapeHtml(tagLabel)}</span>
+                ${routeHtml}
+              </div>
+              <div style="display:flex;align-items:center;gap:0.6rem;font-size:0.76rem;color:#8fa2bd">
+                <span>${escapeHtml(c.time || 'Session Record')}</span>
+                <span class="chit-meta-id">${escapeHtml(c.id || 'CHIT')}</span>
+              </div>
+            </div>
+
+            <div class="chit-content-box">
+              <div style="font-size:0.68rem;color:var(--gold);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:4px">
+                ${escapeHtml(c.subject || (isPoi ? 'Point of Information Inquiry' : 'Substantive Matter'))}
+              </div>
+              <div class="chit-content-text">${escapeHtml(c.content || '(No message content)')}</div>
+            </div>
+
+            <div class="chit-status-row">
+              <div style="display:flex;align-items:center">
+                <span class="chit-status-dot"></span>
+                <span style="color:#cad6ea">${escapeHtml(c.status || 'Logged & Verified')}</span>
+              </div>
+              <div style="font-size:0.75rem;color:var(--gold);font-weight:600">
+                ${isPoi && isIncoming 
+                  ? `Reply due from ${escapeHtml(c.to || 'Delegation')}` 
+                  : `Point awarded strictly to ${escapeHtml(c.from)}`}
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function jumpToSubmDossier(countryName) {
+      if (!countryName) return;
+      submCurrentCountry = countryName;
+      submCurrentQuery = '';
+      submCurrentFilter = 'all';
+      const selectEl = document.getElementById('submDossierCountrySelect');
+      if (selectEl) selectEl.value = countryName;
+      const searchInput = document.getElementById('submDossierSearchInput');
+      if (searchInput) searchInput.value = '';
+      renderSubmDossier(getParam('c'));
+      const sec = document.getElementById('submDossierSection');
+      if (sec) {
+        sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function escapeHtml(s) {
+      return String(s || '').replace(/[&<>"']/g, function (c) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', initTallyPage);
+    window.addEventListener('gtmun:submissions-updated', () => {
+      initTallyPage();
+    });
+  </script>
+</body>
+</html>
