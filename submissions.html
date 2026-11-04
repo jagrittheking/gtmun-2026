@@ -153,76 +153,15 @@
       </table>
     </div>
 
-    <!-- COMMITTEE CHITS & INQUIRIES TRACKER -->
-    <div id="submDossierSection" style="margin-top:2.4rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.10)">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.4rem;flex-wrap:wrap;gap:1rem">
-        <div>
-          <div class="kicker" style="font-size:.74rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:700">COMMITTEE RECORDS · CHIT TRACKER</div>
-          <h2 style="font-size:1.85rem;color:#fff;font-weight:800;margin:.25rem 0 .35rem">Chits &amp; Inquiries</h2>
-          <p style="color:#9fb2d4;font-size:.92rem;margin:0">Search any delegation or select from the table above to view sent chits and received inquiries.</p>
-        </div>
-        <div style="display:flex;gap:.75rem;align-items:center;flex-wrap:wrap">
-          <button class="btn btn-red" type="button" onclick="openGoogleForm('substantiveChit')">+ Submit Chit</button>
-          <button class="btn btn-outline" id="submDossierBtnPoi" type="button" onclick="openGoogleForm('poiChit', getParam('c'))">+ Submit POI Chit</button>
-        </div>
-      </div>
-
-      <!-- Toolbar & Delegation Filter -->
-      <div class="chit-tracker-toolbar">
-        <div class="chit-toolbar-grid">
-          <div>
-            <label class="chit-label" for="submDossierCountrySelect">Select Delegation:</label>
-            <select id="submDossierCountrySelect" class="chit-select">
-              <option value="">— All Committee Delegations —</option>
-            </select>
-          </div>
-          <div>
-            <label class="chit-label" for="submDossierSearchInput">Quick Filter:</label>
-            <input type="text" id="submDossierSearchInput" class="chit-input" placeholder="Type country name...">
-          </div>
-          <div style="padding-top:19px">
-            <button class="chit-btn-reset" id="submDossierResetBtn" type="button">Reset</button>
-          </div>
-        </div>
-
-        <!-- Segmented Filter Tabs -->
-        <div class="chit-seg-nav">
-          <button class="chit-tab-btn active" data-subm-filter="all" id="submPillAll">All Records <span class="chit-tab-count" id="submCountAll">0</span></button>
-          <button class="chit-tab-btn" data-subm-filter="sent" id="submPillSent">Sent Chits <span class="chit-tab-count" id="submCountSent">0</span></button>
-          <button class="chit-tab-btn" data-subm-filter="incoming" id="submPillIncoming">Received Inquiries <span class="chit-tab-count" id="submCountIncoming">0</span></button>
-          <button class="chit-tab-btn" data-subm-filter="docs" id="submPillDocs">Documents <span class="chit-tab-count" id="submCountDocs">0</span></button>
-        </div>
-      </div>
-
-      <!-- Delegation Profile Bar -->
-      <div id="submDossierSummaryBanner" class="chit-delegation-bar" style="display:none">
-        <div>
-          <h3 class="chit-del-name" id="submDossierTitle">Delegation</h3>
-          <div class="chit-del-comm" id="submDossierCommTag">Committee Record</div>
-        </div>
-        <div class="chit-metrics-row">
-          <div class="chit-metric-box">
-            <div class="chit-metric-val" id="submDossierStatSent">0</div>
-            <div class="chit-metric-lbl">Sent Chits</div>
-          </div>
-          <div class="chit-metric-box">
-            <div class="chit-metric-val" id="submDossierStatIncoming">0</div>
-            <div class="chit-metric-lbl">Received Inquiries</div>
-          </div>
-          <div class="chit-metric-box">
-            <div class="chit-metric-val" id="submDossierStatDocs">0</div>
-            <div class="chit-metric-lbl">Documents</div>
-          </div>
-          <div class="chit-metric-box">
-            <div class="chit-metric-val" style="color:var(--gold)" id="submDossierStatPoints">0</div>
-            <div class="chit-metric-lbl" style="color:var(--gold)">Tally Points</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feed Container -->
-      <div id="submDossierFeed" style="display:flex;flex-direction:column;gap:.75rem">
-        <!-- Populated dynamically -->
+    <!-- JOIN DELEGATE COMMITTEE FOOTER BANNER -->
+    <div style="margin-top:2.5rem;padding:2rem 1.8rem;border-radius:16px;background:radial-gradient(ellipse at center,#0e1e40 0%,#060e22 100%);border:1px solid rgba(201,168,76,.35);text-align:center;box-shadow:0 12px 30px rgba(0,0,0,.4)">
+      <h3 style="font-size:1.45rem;color:#fff;font-weight:700;margin:0 0 .5rem">Ready to participate in debate?</h3>
+      <p style="color:#9fb2d4;max-width:600px;margin:0 auto 1.4rem;font-size:.95rem">
+        Navigate to the United Nations General Assembly chamber portal to follow live proceedings and draft resolutions.
+      </p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a class="btn btn-red" href="portal.html?committee=unga" style="padding:10px 22px">Join Delegate Committee &rarr;</a>
+        <a class="btn btn-outline" href="UNGA - BG.pdf" download style="padding:10px 20px">📥 Background Guide</a>
       </div>
     </div>
   </div>
@@ -248,14 +187,10 @@
   <!-- Recognition Sheet Dynamic Engine -->
   <script>
     const COMM_INFO = {
-      unga: { 
-        name: "United Nations General Assembly", 
-        code: "UNGA", 
-        header: "Country",
-        agenda: "Deliberating the Stagnation of Decolonization in Non-Self-Governing Territories, with Special Emphasis on Strategic Archipelagos, Resource Control, and the Legitimacy of Administrative Powers."
-      },
-      
-      
+        unga: { 
+          name: "United Nations General Assembly", 
+          agenda: "Deliberating the Stagnation of Decolonization in Non-Self-Governing Territories, with Special Emphasis on Strategic Archipelagos, Resource Control, and the Legitimacy of Administrative Powers." 
+        }
       };
 
     const ALL_COLUMNS = [

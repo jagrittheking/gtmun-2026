@@ -34,7 +34,7 @@
           <a href="#how-it-works">How It Works</a>
           <a href="handbook.html">Handbook</a>
           <a href="#committees">Committees</a>
-          <a href="#live-log">Live Chit Log</a>
+          <a href="portal.html?committee=unga">Join Committee</a>
           <a href="#awards">Awards</a>
         </div>
         <div class="nav-submit">
@@ -101,9 +101,8 @@
     <button class="btn btn-red" type="button" onclick="openGoogleForm('workingPaper')" style="display:inline-flex">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 11v6M9 14l3-3 3 3"/><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg> Submit Documents
     </button>
-    <a class="btn btn-outline" href="#live-log" style="display:inline-flex">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg> Live Chit Log &amp; Tally
-    </a>
+    <a class="btn btn-outline" href="https://docs.google.com/forms/d/e/1FAIpQLSfLXpp784JMLS--lwnvex8G9RiY48lUT5C25yEyulXAm04Usw/viewform" target="_blank" rel="noopener">Official Registration ↗</a>
+          <a class="btn btn-outline" href="UNGA - BG.pdf" download style="display:inline-flex">📥 Download BG</a>
     <a class="btn btn-outline" href="#committees" style="display:inline-flex">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="12 8 8 12 12 16 12 8"/></svg> The 4 Committees
     </a>
@@ -263,11 +262,11 @@
         <a class="more" href="submissions.html">View live tally <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </article>
 
-      <article class="hub-opt">
-        <span class="oi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
-        <h3>Chit Tracker</h3>
-        <p>Filter committee chits by delegation to review sent chits, received inquiries, and verified logs.</p>
-        <a class="more" href="#live-log">Open Chit Tracker <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <article class="hub-opt" style="border: 1px solid rgba(201, 168, 76, 0.45); background: radial-gradient(ellipse at top right, rgba(201, 168, 76, 0.12), rgba(255, 255, 255, 0.03));">
+        <span class="oi" style="color:var(--gold);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg></span>
+        <h3 style="color:#ffffff;">Join Delegate Committee</h3>
+        <p>Enter the live UNGA chamber portal: participate in committee debate, access working papers, and collaborate with the Dais.</p>
+        <a class="more" href="portal.html?committee=unga" style="color:var(--gold); font-weight:700;">Enter Committee Portal <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </article>
 
       <article class="hub-opt">
@@ -331,62 +330,26 @@
     </div>
   </section>
 
-  <!-- LIVE CHIT LOG & RECOGNITION SHEET -->
-  <section class="section" id="live-log" style="margin-top:3.6rem">
-    <div class="section-head">
-      <div>
-        <p class="kicker" style="font-size:.78rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700">LIVE DAIS LOG</p>
-        <h2 style="font-size:1.8rem;color:#fff;font-weight:800;margin-top:.2rem">Committee Recognition &amp; Chit Tracker</h2>
+    <!-- JOIN DELEGATE COMMITTEE ACTION BANNER -->
+  <section class="section" id="join-chamber" style="margin-top:3.6rem">
+    <div style="background: radial-gradient(ellipse at center, #0e1d3d 0%, #060e20 100%); border: 1.5px solid rgba(201, 168, 76, 0.4); border-radius: 20px; padding: 3rem 2rem; text-align: center; box-shadow: 0 18px 45px rgba(0,0,0,0.5); position: relative; overflow: hidden;">
+      <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, #C9A84C, transparent);"></div>
+      <p class="kicker" style="font-size:.78rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:.5rem">OFFICIAL DIPLOMATIC CHAMBER</p>
+      <h2 style="color:#fff;font-size:2.2rem;font-weight:800;margin:0 0 1rem;font-family:var(--font-head)">Enter The United Nations General Assembly</h2>
+      <p style="color:#9fb2d4;max-width:680px;margin:0 auto 1.8rem;font-size:1.02rem;line-height:1.6">
+        Ready to represent your delegation? Join the official UNGA plenary chamber to review working papers, submit substantive motions, and deliberate on the Decolonization agenda.
+      </p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a class="btn btn-red" href="portal.html?committee=unga" style="font-size:1rem;padding:14px 28px;box-shadow:0 6px 20px rgba(186,28,28,0.4)">
+          Join Delegate Committee →
+        </a>
+        <a class="btn btn-outline" href="https://docs.google.com/forms/d/e/1FAIpQLSfLXpp784JMLS--lwnvex8G9RiY48lUT5C25yEyulXAm04Usw/viewform" target="_blank" rel="noopener" style="font-size:1rem;padding:14px 24px">
+          Register for Seat (₹499) ↗
+        </a>
+        <a class="btn btn-outline" href="UNGA - BG.pdf" download style="font-size:1rem;padding:14px 24px">
+          📥 Download Background Guide
+        </a>
       </div>
-      <span class="rule"></span>
-    </div>
-
-    <!-- Filters Bar -->
-    <div class="filters" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10);border-radius:14px;padding:1.4rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:flex-end">
-      <label style="flex:1;min-width:180px;color:#aebed0;font-size:.82rem">
-        Filter by Committee:
-        <select id="filterCommittee" style="background:#0c1830;color:#fff;border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:.6rem .8rem;margin-top:.4rem;width:100%">
-          <option value="unga" selected>United Nations General Assembly (UNGA)</option>
-        </select>
-      </label>
-
-      <label style="flex:1;min-width:180px;color:#aebed0;font-size:.82rem">
-        Filter by Chit Type:
-        <select id="filterType" style="background:#0c1830;color:#fff;border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:.6rem .8rem;margin-top:.4rem;width:100%">
-          <option value="all">All Types</option>
-          <option value="substantive">Substantive Chits</option>
-          <option value="poi">POI Chits &amp; Replies</option>
-          <option value="document">Working Papers &amp; Documents</option>
-        </select>
-      </label>
-
-      <label style="flex:1.8;min-width:240px;color:#aebed0;font-size:.82rem">
-        Search Delegation / Subject:
-        <input type="text" id="searchQuery" placeholder="Search country, team, or keywords (e.g. Argentina, Mexico, CSK)..." style="background:#0c1830;color:#fff;border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:.6rem .8rem;margin-top:.4rem;width:100%">
-      </label>
-
-      <button class="btn btn-red" type="button" onclick="openGoogleForm('substantiveChit')" style="height:42px;flex-shrink:0">
-        + Submit Chit
-      </button>
-    </div>
-
-    <!-- Live Chit Table -->
-    <div class="table-wrap" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.10);border-radius:14px;overflow-x:auto;margin-top:1.2rem">
-      <table style="width:100%;border-collapse:collapse;color:#cad6ea">
-        <thead>
-          <tr style="background:#0b1933;border-bottom:1px solid rgba(255,255,255,.12)">
-            <th style="padding:14px;text-align:left;color:var(--gold);font-size:.82rem;text-transform:uppercase">Time &amp; ID</th>
-            <th style="padding:14px;text-align:left;color:var(--gold);font-size:.82rem;text-transform:uppercase">Committee</th>
-            <th style="padding:14px;text-align:left;color:var(--gold);font-size:.82rem;text-transform:uppercase">Type</th>
-            <th style="padding:14px;text-align:left;color:var(--gold);font-size:.82rem;text-transform:uppercase">From / To</th>
-            <th style="padding:14px;text-align:left;color:var(--gold);font-size:.82rem;text-transform:uppercase;min-width:320px">Subject &amp; Message</th>
-            <th style="padding:14px;text-align:left;color:var(--gold);font-size:.82rem;text-transform:uppercase">Status</th>
-          </tr>
-        </thead>
-        <tbody id="chitsTableBody">
-          <!-- Populated by app.js -->
-        </tbody>
-      </table>
     </div>
   </section>
 
