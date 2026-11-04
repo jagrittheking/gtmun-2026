@@ -1,4 +1,5 @@
 // GTMUN'26 Committee Data & Operations
+// GTMUN'26 Committee Data & Operations
 const COMMITTEES_DATA = {
   unga: {
     id: "unga",
@@ -6,161 +7,66 @@ const COMMITTEES_DATA = {
     name: "United Nations General Assembly",
     number: "01",
     symbol: "◎",
-    focus: "Arctic security, militarization, resource competition & climate impacts",
-    agenda: "Addressing the Emerging Geopolitical and Environmental Security Challenges in the Arctic Region, including Militarization, Resource Competition, and Climate Change Impacts.",
-    overview: "The United Nations General Assembly considers the escalating geopolitical, environmental, and military friction in the circumpolar Arctic. With polar ice receding at historic rates, major Arctic states and global powers compete for maritime navigation corridors, untapped hydrocarbon reserves, and forward military readiness, challenging multilateral governance frameworks.",
+    focus: "Decolonization of the 17 NSGTs, C-24 mandate, resource sovereignty & plebiscites",
+    agenda: "Deliberating the Stagnation of Decolonization in Non-Self-Governing Territories, with Special Emphasis on Strategic Archipelagos, Resource Control, and the Legitimacy of Administrative Powers.",
+    overview: "The United Nations General Assembly considers the prolonged stagnation of decolonization across the remaining 17 Non-Self-Governing Territories (NSGTs). With over 1.6 to 2 million people remaining under colonial administration and zero de-listings since 2002, the General Assembly must address the friction between territorial integrity and the inalienable Right to Self-Determination under Resolution 1514 (XV), forward military enclaves, and sovereign control over vast Exclusive Economic Zones (EEZs).",
     guideSections: [
       {
-        id: "context",
-        title: "Circumpolar Geopolitics & Military Proliferation",
-        content: `The melting Arctic cap has transformed the Arctic from a zone of low tension into a theater of strategic competition. Under the UN Charter and UNCLOS, Arctic coastal states assert extended continental shelf claims under Article 76. Militarization—including deep-water naval bases, radar deployments, and submarine corridors—threatens circumpolar security and strains multilateral dialogue.`
+        id: "mandate",
+        title: "Part I: General Assembly Competence & Resolution 1514 (XV)",
+        content: `Under UN Charter Chapter XI (Articles 73 and 74) and landmark General Assembly Resolution 1514 (XV)—the Magna Carta of Decolonization—all peoples have an inalienable right to complete freedom and the exercise of sovereign self-determination. The Fourth Committee (SPECPOL) and the Special Committee on Decolonization (C-24) maintain binding oversight over all territories that have not yet achieved self-government.`
       },
       {
-        id: "shipping",
-        title: "Northern Sea Routes & Natural Resource Extraction",
-        content: `The Northern Sea Route and Northwest Passage offer shipping transit reductions of up to 40% between Europe and Asia. Coastal jurisdiction over navigation, mandatory pilotage under UNCLOS Article 234 (Ice-Covered Areas), and rights to seabed rare-earth minerals and fossil fuel basins demand unified international legal consensus.`
+        id: "stagnation",
+        title: "Part II: The 17 NSGTs & The 30-Year Deadlock",
+        content: `An estimated 1.6 to 2 million people remain across 17 officially designated Non-Self-Governing Territories, predominantly small island archipelagos in the Pacific, Atlantic, and Caribbean (e.g. New Caledonia, Guam, French Polynesia, Bermuda, Falklands/Malvinas, Gibraltar) alongside Western Sahara. While the first wave of decolonization liberated over 80 nations, the remaining territories face structural stagnation driven by metropolitan dependency and geostrategic reluctance.`
       },
       {
-        id: "climate",
-        title: "Environmental Fragility & Indigenous Sovereignty",
-        content: `The Arctic is warming up to four times faster than the global average. Thawing permafrost threatens indigenous livelihoods and circumpolar infrastructure, releasing massive methane deposits. Resolutions must guarantee indigenous self-determination, environmental remediation funds, and binding caps on heavy fuel oil use in polar waters.`
+        id: "geostrategy",
+        title: "Part III: Forward Military Enclaves & Archipelagic EEZs",
+        content: `Administering powers retain control over remote archipelagos to safeguard forward military installations (Naval Base Guam, Diego Garcia, Gibraltar naval corridors). Furthermore, under UNCLOS (1982), sovereign control generates massive 200-nautical-mile Exclusive Economic Zones (EEZs) controlling lucrative offshore fisheries, subsea critical mineral deposits (nickel, cobalt polymetallic nodules), and strategic subsea communication cable corridors.`
+      },
+      {
+        id: "sovereignty",
+        title: "Part IV: Right to Self-Determination vs. Territorial Integrity",
+        content: `Debate centers on reconciling Article 1(2) (Self-Determination) with Article 2(4) (Territorial Integrity). In the landmark 2019 Chagos Advisory Opinion, the International Court of Justice affirmed that self-determination possesses the character of an erga omnes obligation—creating binding legal duties for all States to end unlawful colonial separation. Resolution 1541 (XV) establishes three legitimate outcomes: (1) Sovereign Independence, (2) Free Association, or (3) Full Integration.`
+      },
+      {
+        id: "solutions",
+        title: "Part V: Genuine Plebiscites & Sovereign Escrow Accounts",
+        content: `Genuine referenda require neutral UN observation and protected voter rolls to prevent demographic dilution (as illustrated by the Kanak boycott in the 2021 New Caledonia referendum). Operative solutions must mandate sovereign resource escrow accounts (repatriating 30%–50% of offshore royalties into territorial trust funds) and authorize direct sub-sovereign access to the UN Loss and Damage Fund for vulnerable small island territories.`
       }
     ],
     quiz: [
       {
-        q: "Under UNCLOS Article 234, what special power is granted to coastal states in ice-covered areas?",
-        options: ["Unrestricted sovereign annexation", "Right to adopt and enforce non-discriminatory laws for the prevention and control of marine pollution", "Complete closure of international airspace", "Exemption from all environmental treaties"],
-        correct: 1,
-        exp: "Article 234 gives coastal states special regulatory authority to prevent marine pollution in ice-covered waters within their Exclusive Economic Zone."
-      },
-      {
-        q: "Which major intergovernmental body serves as the primary forum for Arctic governments and Indigenous peoples?",
-        options: ["The Arctic Council", "The Antarctic Treaty Secretariat", "NATO Northern Flank", "Nordic Energy Commission"],
+        q: "What landmark 1960 General Assembly declaration is universally recognized as the 'Magna Carta of Decolonization'?",
+        options: ["Resolution 1514 (XV)", "Resolution 2625 (XXV)", "Resolution 1803 (XVII)", "Resolution 3314 (XXIX)"],
         correct: 0,
-        exp: "The Arctic Council, founded under the 1996 Ottawa Declaration, is the leading intergovernmental forum promoting cooperation in the Arctic."
-      }
-    ]
-  },
-  uncsw: {
-    id: "uncsw",
-    code: "UNCSW",
-    name: "United Nations Commission on the Status of Women",
-    number: "02",
-    symbol: "♀",
-    focus: "Trafficking, organ trade, gender-based violence & international justice",
-    agenda: "Combating the Global Exploitation of Women and Girls through Human Trafficking, Organ Trade, and Gender-Based Violence, while Strengthening International Protection and Justice Mechanisms.",
-    overview: "The Commission on the Status of Women convenes to formulate decisive multilateral protocols combating transnational trafficking networks, illicit organ harvesting and trade, and systemic gender-based exploitation, establishing robust cross-border prosecution safeguards and victim-centric asylum protections.",
-    guideSections: [
-      {
-        id: "trafficking",
-        title: "Multilateral Architecture & Transnational Crime Syndicates",
-        content: `Supplementing the 2000 Palermo Protocol and UNTOC, the global community faces evolving syndicates operating across conflict zones and vulnerable migrant corridors. Women and girls remain disproportionately subjected to debt-bondage, forced labor, and criminal coercion, with transit countries often lacking specialized victim protection units.`
+        exp: "General Assembly Resolution 1514 (XV), adopted in December 1960, declared that colonialism in all its forms must be brought to a speedy and unconditional end."
       },
       {
-        id: "organ",
-        title: "Illicit Organ Removal & Coercive Medical Exploitation",
-        content: `Trafficking in persons for the removal of organs represents one of the most covert and lethal dimensions of exploitation. Impoverished women and asylum seekers are coerced or abducted into illicit clinical networks. Delegates must formulate binding tracking protocols, donor registry transparency, and penalties for cross-border medical complicity.`
+        q: "Under General Assembly Resolution 1541 (XV), what are the THREE legitimate constitutional outcomes of self-determination?",
+        options: ["Annexation, Military Protectorate, or Mandate", "Sovereign Independence, Free Association, or Full Integration", "Indefinite Trusteeship, Federation, or Devolution", "Autonomous Collectivity, Crown Dependency, or Commonwealth"],
+        correct: 1,
+        exp: "Principle VI of Resolution 1541 (XV) strictly defines the three legitimate options: (1) Emergence as a sovereign independent State, (2) Free association with an independent State, or (3) Integration with an independent State on equal footing."
       },
       {
-        id: "justice",
-        title: "Gender-Based Violence, Cyber-Grooming & Victim Protection",
-        content: `Digital platforms and predatory cyber-recruitment have expanded the reach of traffickers. Effective international frameworks must mandate non-punishment principles—ensuring victims are never prosecuted for acts committed under coercion—while providing funded safe houses and transnational legal aid.`
-      }
-    ],
-    quiz: [
+        q: "In its historic 2019 Advisory Opinion on the Chagos Archipelago, what fundamental legal principle did the ICJ affirm regarding self-determination?",
+        options: ["Self-determination applies only to landlocked nations", "Self-determination creates binding erga omnes obligations for all States", "Administering powers can unilaterally redraw borders prior to independence", "Decolonization treaties expire after 50 years"],
+        correct: 1,
+        exp: "The ICJ affirmed by 13-1 that self-determination has the character of an erga omnes norm, giving all States a legal interest in protecting it and cooperating to complete decolonization."
+      },
       {
-        q: "What landmark international agreement establishes global standards against human trafficking?",
-        options: ["Palermo Protocol (2000)", "Kyoto Protocol (1997)", "Geneva Convention IV", "Basel Convention"],
+        q: "Which subsidiary organ of the General Assembly is specifically mandated to examine the implementation of Resolution 1514 across the 17 NSGTs?",
+        options: ["The Special Committee on Decolonization (C-24)", "The Disarmament Commission", "The Trusteeship Council Standing Committee", "The International Law Commission"],
         correct: 0,
-        exp: "The 2000 Palermo Protocol to the UN Convention against Transnational Organized Crime is the principal international instrument combating trafficking."
+        exp: "The Special Committee on Decolonization (Committee of 24 / C-24) meets annually to examine political, economic, and human rights developments in all 17 Non-Self-Governing Territories."
       },
       {
-        q: "Why is the 'Non-Punishment Principle' essential in combating the exploitation of women and girls?",
-        options: ["It grants immunity to criminal syndicates", "It ensures victims are not prosecuted for unlawful acts they were compelled to commit while being trafficked", "It eliminates border controls", "It waives international criminal court jurisdiction"],
+        q: "Why did indigenous Kanak representatives boycott the third New Caledonia independence referendum in December 2021?",
+        options: ["Lack of international funding", "Holding the referendum during a period of COVID-19 mourning and disputed restricted voter rolls", "Relocation of the capital city", "Disputes over currency valuation"],
         correct: 1,
-        exp: "The non-punishment principle ensures that victims of trafficking are protected from prosecution for illegal acts committed as a direct consequence of their trafficking situation."
-      }
-    ]
-  },
-  ipl: {
-    id: "ipl",
-    code: "IPL",
-    name: "IPL Mega Auction 2028",
-    number: "03",
-    symbol: "♜",
-    focus: "Purse dynamics, RTM strategies & squad optimization",
-    agenda: "Mega Auction 2028",
-    overview: "Franchise owners, CEOs, and strategy directors assemble for the high-stakes 2028 Mega Auction. Teams must balance purse limits, Right to Match (RTM) tactics, overseas player composition, and cutting-edge data analytics for roster optimization.",
-    guideSections: [
-      {
-        id: "purse",
-        title: "Purse Dynamics & Retention Economics for 2028",
-        content: `Every franchise faces strict retention deduction slabs against their total purse limit. Retaining too many marquee players cannibalizes squad depth, whereas entering the auction pool with excess capital risks severe bid inflation for premium specialists.`
-      },
-      {
-        id: "rtm",
-        title: "Right to Match (RTM) Cards & Psychological Warfare",
-        content: `The RTM mechanism alters auction game theory. When an auctioneer invites a former franchise to exercise their Right to Match, rival teams frequently execute strategic bidding to drive prices up, draining opponents' funds before yielding.`
-      },
-      {
-        id: "analytics",
-        title: "Impact Player Synergy & Specialization Metrics",
-        content: `With tactical substitutions permitted mid-game, traditional medium-pace all-rounders yield ground to elite death-over hitters and specialist phase-specific bowlers, demanding specialized valuation metrics.`
-      }
-    ],
-    quiz: [
-      {
-        q: "What strategic advantage does the Right to Match (RTM) card offer a franchise in a Mega Auction?",
-        options: ["Free retention with no deduction", "Right to match the highest closing bid made by another franchise for their former player", "Immediate trade with any rival team", "Doubles the team's available purse"],
-        correct: 1,
-        exp: "RTM allows a franchise to secure their previous player by matching the final winning bid reached on the auction floor."
-      },
-      {
-        q: "How does the Impact Player substitution rule alter auction valuation strategies?",
-        options: ["Reduces the maximum squad size to 11", "Enables teams to invest heavily in specialist death hitters or bowlers rather than multi-dimensional utility players", "Bans overseas players from bowling", "Eliminates the powerplay"],
-        correct: 1,
-        exp: "Because an impact substitution is allowed during a match, squads can play a pure batter and substitute in a dedicated specialist bowler."
-      }
-    ]
-  },
-  aippm: {
-    id: "aippm",
-    code: "AIPPM",
-    name: "All India Political Parties Meet",
-    number: "04",
-    symbol: "▥",
-    focus: "POCSO Act implementation, child protection, juvenile justice & misuse safeguards",
-    agenda: "Reviewing and Strengthening the Implementation of the POCSO Act, 2012, while Balancing Child Protection, Juvenile Justice, and Safeguards Against Legal Misuse.",
-    overview: "All India Political Parties Meet convenes to examine structural enforcement of the Protection of Children from Sexual Offences (POCSO) Act, 2012. Leaders address judicial delays, child-friendly courts, forensic accountability, the delicate age-of-consent balance in juvenile justice, and statutory safeguards against false complaints and legal misuse.",
-    guideSections: [
-      {
-        id: "statutory",
-        title: "Statutory Machinery & Child Protection Mandates",
-        content: `The Protection of Children from Sexual Offences (POCSO) Act, 2012, established child-friendly reporting, in-camera trials, and mandatory reporting obligations. However, structural bottlenecks in forensic labs, police training, and Child Welfare Committees (CWCs) cause prolonged trial delays.`
-      },
-      {
-        id: "courts",
-        title: "Fast-Track Special Courts (FTSCs) & Trial Timelines",
-        content: `While Section 35(2) mandates trial conclusion within one year of cognisance, nationwide pendency remains high. Leaders must address dedicated judicial infrastructure, forensic medical examiner staffing, and comprehensive compensation disbursement under victim welfare schemes.`
-      },
-      {
-        id: "safeguards",
-        title: "Adolescent Consensual Relationships & Safeguards Against Misuse",
-        content: `Multiple High Courts and the Law Commission have highlighted the criminalisation of adolescent romantic relationships under strict statutory age-of-consent laws. Parliamentarians must debate introducing judicial discretion, statutory safeguards against malicious misuse, and clear delineations between predatory exploitation and consensual adolescent behavior.`
-      }
-    ],
-    quiz: [
-      {
-        q: "Under Section 35(2) of the POCSO Act (2012), what is the stipulated timeframe for completing a trial?",
-        options: ["Within 60 days", "Within 6 months", "Within one year from the date of taking cognisance", "Within 3 years"],
-        correct: 2,
-        exp: "Section 35(2) mandates that the Special Court shall complete the trial, as far as possible, within one year from taking cognisance."
-      },
-      {
-        q: "What key challenge regarding adolescent relationships has been frequently highlighted by Indian High Courts under POCSO?",
-        options: ["Complete absence of child-friendly courts", "Criminalisation of consensual teenage relationships under rigid statutory age-of-consent provisions without judicial discretion", "Lack of police jurisdiction", "Abolition of the Juvenile Justice Act"],
-        correct: 1,
-        exp: "Courts have repeatedly noted that strict statutory rape provisions sometimes result in the criminalisation of consensual adolescent relationships, prompting debate on judicial discretion."
+        exp: "Indigenous Kanaks requested a postponement due to high COVID-19 mortality and customary mourning periods, and boycotted when France proceeded, resulting in a 56% abstention rate."
       }
     ]
   }
@@ -261,7 +167,7 @@ function loadCommittee(commKey) {
     };
   }
 
-  // Handle committees without chits (IPL and AIPPM have no chits)
+  // Parliamentary recognition tracking
   const isChitEnabled = (commKey === 'unga' || commKey === 'uncsw');
   const btnChits = document.getElementById('btn-chits');
   if (btnChits) btnChits.style.display = isChitEnabled ? '' : 'none';
@@ -295,20 +201,11 @@ function loadCommitteeTally(commKey) {
   const standaloneLink = document.getElementById('tallyStandaloneLink');
   if (standaloneLink) standaloneLink.href = 'submissions.html?c=' + commKey;
 
-  // In IPL and AIPPM there are no chits
+  // Recognition tracks debate floor participation
   const isChitEnabled = (commKey === 'unga' || commKey === 'uncsw');
-  const activeColumns = isChitEnabled ? [
-    "Position Paper",
-    "Press Release",
-    "Working Paper",
-    "Speech",
-    "POI",
-    "Motions",
-    "POO (Ruled)",
-    "Yields",
-    "Substantive Chit",
-    "POI Chits"
-  ] : [
+    // Recognition Sheet tracks parliamentary debate & documents only (No chits in recognition table)
+    // Recognition Sheet tracks parliamentary debate & documents only (No chits in recognition table)
+  const activeColumns = [
     "Position Paper",
     "Press Release",
     "Working Paper",
@@ -321,7 +218,7 @@ function loadCommitteeTally(commKey) {
 
   // Adjust stat cards and submit button
   const cardChits = document.getElementById('tallyStatChitsCard');
-  if (cardChits) cardChits.style.display = isChitEnabled ? '' : 'none';
+  if (cardChits) cardChits.style.display = 'none';
 
   const btnSubmitChit = document.getElementById('tallyBtnSubmitChit');
   const btnSubmitDoc = document.getElementById('tallyBtnSubmitDoc');

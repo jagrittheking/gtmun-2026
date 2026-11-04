@@ -19,7 +19,7 @@
   <header class="masthead">
     <div class="wrap">
       <a class="lockup" href="home.html">
-        <img class="ryan-emblem" src="gtmun-logo.png" alt="GTMUN 2026" style="height:48px;width:auto;border-radius:8px;background:#fff;padding:2px">
+        <img class="ryan-emblem" src="gtmun-logo.png" alt="GTMUN 2026" style="height:48px;width:auto;border-radius:8px;">
         <span class="txt">
           <b>GTMUN’26</b>
           <span>Global Teens Model United Nations 2026</span>
@@ -48,9 +48,7 @@
             <a href="javascript:void(0)" onclick="openGoogleForm('poiChit', 'unga')">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/></svg> UNGA POI Chit
             </a>
-            <a href="javascript:void(0)" onclick="openGoogleForm('poiChit', 'uncsw')">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/></svg> UNCSW POI Chit
-            </a>
+            
             <a href="javascript:void(0)" onclick="openGoogleForm('workingPaper')">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg> Submit Documents
             </a>
@@ -114,10 +112,7 @@
         <label style="color:#a8b8d2;font-size:.85rem;display:flex;align-items:center;gap:.6rem">
           <span>Committee:</span>
           <select id="commSelect" style="background:#0c1830;color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:.5rem .8rem;font-size:.85rem">
-            <option value="unga">01 · UNGA — General Assembly</option>
-            <option value="uncsw">02 · UNCSW — Status of Women</option>
-            <option value="ipl">03 · IPL Mega Auction 2028</option>
-            <option value="aippm">04 · AIPPM — Political Parties</option>
+            <option value="unga" selected>01 · UNGA — United Nations General Assembly</option>
           </select>
         </label>
         <input type="text" id="submSearchInput" placeholder="Filter by country or portfolio..." style="background:#0c1830;color:#fff;border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:.5rem .8rem;font-size:.85rem;flex:1;max-width:320px">
@@ -144,8 +139,7 @@
             <th>Motions</th>
             <th>POO (Ruled)</th>
             <th>Yields</th>
-            <th>Substantive Chit</th>
-            <th>POI Chits</th>
+            
           </tr>
         </thead>
         <tbody id="recogTableBody">
@@ -237,7 +231,7 @@
   <footer>
     <div class="wrap">
       <div style="display:flex;align-items:center;gap:14px">
-        <img src="gtmun-logo.png" alt="GTMUN 2026" style="height:54px;width:auto;border-radius:8px;background:#fff;padding:2px">
+        <img src="gtmun-logo.png" alt="GTMUN 2026" style="height:54px;width:auto;border-radius:8px;">
         <div>
           <div style="font-family:var(--font-head);font-size:1.2rem;color:#fff;font-weight:700">GTMUN’26</div>
           <div class="small">Global Teens Model United Nations · 14–15 November 2026</div>
@@ -258,27 +252,11 @@
         name: "United Nations General Assembly", 
         code: "UNGA", 
         header: "Country",
-        agenda: "Addressing the Emerging Geopolitical and Environmental Security Challenges in the Arctic Region, including Militarization, Resource Competition, and Climate Change Impacts."
+        agenda: "Deliberating the Stagnation of Decolonization in Non-Self-Governing Territories, with Special Emphasis on Strategic Archipelagos, Resource Control, and the Legitimacy of Administrative Powers."
       },
-      uncsw: { 
-        name: "UN Commission on the Status of Women", 
-        code: "UNCSW", 
-        header: "Country",
-        agenda: "Combating the Global Exploitation of Women and Girls through Human Trafficking, Organ Trade, and Gender-Based Violence, while Strengthening International Protection and Justice Mechanisms."
-      },
-      ipl: { 
-        name: "IPL Mega Auction 2028", 
-        code: "IPL", 
-        header: "Franchise / Team",
-        agenda: "Mega Auction 2028"
-      },
-      aippm: { 
-        name: "All India Political Parties Meet", 
-        code: "AIPPM", 
-        header: "Leader / Portfolio",
-        agenda: "Reviewing and Strengthening the Implementation of the POCSO Act, 2012, while Balancing Child Protection, Juvenile Justice, and Safeguards Against Legal Misuse."
-      }
-    };
+      
+      
+      };
 
     const ALL_COLUMNS = [
       "Position Paper",
@@ -289,8 +267,7 @@
       "Motions",
       "POO (Ruled)",
       "Yields",
-      "Substantive Chit",
-      "POI Chits"
+      
     ];
 
     function getParam(param) {
@@ -328,7 +305,7 @@
         if (btnSubmitDoc) btnSubmitDoc.style.display = 'none';
       }
 
-      // Filter active columns (omit chits for IPL & AIPPM)
+      // Filter active columns for parliamentary recognition
       const activeColumns = isChitless 
         ? ALL_COLUMNS.filter(c => c !== 'Substantive Chit' && c !== 'POI Chits')
         : ALL_COLUMNS;

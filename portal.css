@@ -569,3 +569,47 @@
 }
 
 
+
+/* Modern High-End GTMUN Enhancements */
+.btn-join-nav {
+  background: linear-gradient(135deg, #fad02c, #e5a93c);
+  color: #081226 !important;
+  font-weight: 800;
+  font-size: 11px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(250, 208, 44, 0.25);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-join-nav:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(250, 208, 44, 0.4);
+}
+.btn-gold {
+  background: var(--gold) !important;
+  color: #081226 !important;
+  font-weight: 800 !important;
+}
+.btn-gold:hover {
+  filter: brightness(1.1);
+}
+.recog-table th {
+  background: #0d1a33;
+  color: #e2e8f0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 10px 8px;
+  border-bottom: 2px solid rgba(250, 208, 44, 0.4);
+}
+.recog-table td {
+  padding: 9px 8px;
+  font-size: 13px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.recog-table tr:hover td {
+  background: rgba(250, 208, 44, 0.05);
+}
