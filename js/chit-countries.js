@@ -60,3 +60,37 @@ window.GTMUN_COMMITTEE_COUNTRIES = {
 
 // Aliases for compatibility
 window.INMUN_COMMITTEE_COUNTRIES = window.GTMUN_COMMITTEE_COUNTRIES;
+
+
+// Canonical Roster Matching Helpers
+window.findMatchingRosterCountry = function(input, roster) {
+  if (!input || !roster) return null;
+  const s = String(input).trim().toLowerCase();
+  for (let i = 0; i < roster.length; i++) {
+    const c = roster[i];
+    if (c.toLowerCase() === s) return c;
+  }
+  for (let i = 0; i < roster.length; i++) {
+    const c = roster[i];
+    const cl = c.toLowerCase();
+    if (cl.includes(s) || s.includes(cl)) return c;
+  }
+  const cleaned = s.replace(/^(republic of|state of|kingdom of|federation of|people's democratic republic of|arab republic of|federal republic of|islamic republic of)\s+/i, '').trim();
+  if (cleaned.length >= 3) {
+    for (let i = 0; i < roster.length; i++) {
+      const c = roster[i];
+      if (c.toLowerCase().includes(cleaned) || cleaned.includes(c.toLowerCase())) return c;
+    }
+  }
+  return null;
+};
+
+window.isCountryMatch = function(a, b) {
+  if (!a || !b) return false;
+  const sa = String(a).trim().toLowerCase();
+  const sb = String(b).trim().toLowerCase();
+  if (sa === sb || sa.includes(sb) || sb.includes(sa)) return true;
+  const ca = sa.replace(/^(republic of|state of|kingdom of|federation of|people's democratic republic of|arab republic of|federal republic of|islamic republic of)\s+/i, '').trim();
+  const cb = sb.replace(/^(republic of|state of|kingdom of|federation of|people's democratic republic of|arab republic of|federal republic of|islamic republic of)\s+/i, '').trim();
+  return ca && cb && (ca === cb || ca.includes(cb) || cb.includes(ca));
+};

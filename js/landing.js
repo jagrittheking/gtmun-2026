@@ -6,7 +6,7 @@
   /* ---- welcome modal (shows once per session) ---- */
   var modal = document.getElementById("welcomeModal");
   if (modal) {
-    var KEY = "inmun-welcome-2026";
+    var KEY = "gtmun-wa-modal-2026";
     var seen = false; try { seen = sessionStorage.getItem(KEY) === "1"; } catch (e) {}
     var mark = function () { try { sessionStorage.setItem(KEY, "1"); } catch (e) {} };
     var close = function () { modal.classList.remove("show"); mark(); setTimeout(function () { modal.hidden = true; }, 280); };
@@ -14,7 +14,7 @@
       setTimeout(function () {
         modal.hidden = false;
         requestAnimationFrame(function () { modal.classList.add("show"); });
-      }, 650);
+      }, 400);
     }
     var x = document.getElementById("wmClose"); if (x) x.addEventListener("click", close);
     var d = document.getElementById("wmDismiss"); if (d) d.addEventListener("click", close);
