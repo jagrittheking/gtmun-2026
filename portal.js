@@ -181,7 +181,6 @@ function loadCommittee(commKey) {
         document.getElementById('quizScoreText').scrollIntoView({ behavior: 'smooth' });
       };
     }
-  }
 
   // Parliamentary recognition tracking
   const isChitEnabled = (commKey === 'unga' || commKey === 'uncsw');
@@ -659,16 +658,42 @@ function getLocalChits() {
 }
 
 // Tab Switching
-function switchTab(tabId) {
-  document.querySelectorAll('.portal-tab-content').forEach(el => el.style.display = 'none');
-  document.querySelectorAll('.portal-tabs button').forEach(el => el.classList.remove('active'));
 
-  const target = document.getElementById(`tab-${tabId}`);
-  if (target) target.style.display = 'block';
+// Universal Global Tab Switcher
+window.switchTab = function(tabId) {
+  if (!tabId) return;
+  const cleanId = tabId.replace('tab-', '').replace('btn-', '').trim().toLowerCase();
+  
+  // Hide all tab contents
+  document.querySelectorAll('.portal-tab-content').forEach(el => {
+    el.style.display = 'none';
+  });
+  
+  // Remove active from all tab buttons
+  document.querySelectorAll('.portal-tabs button').forEach(el => {
+    el.classList.remove('active');
+  });
 
-  const btn = document.getElementById(`btn-${tabId}`);
-  if (btn) btn.classList.add('active');
-}
+  // Show selected content
+  const target = document.getElementById('tab-' + cleanId);
+  if (target) {
+    target.style.display = 'block';
+    try {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch(e){}
+  }
+
+  // Activate matching button
+  const btn = document.getElementById('btn-' + cleanId);
+  if (btn) {
+    btn.classList.add('active');
+  }
+
+  try {
+    history.replaceState(null, null, '#tab-' + cleanId);
+  } catch(e){}
+};
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const commKey = getCurrentCommittee();
@@ -707,3 +732,94 @@ window.addEventListener('gtmun:submissions-updated', () => {
   loadCommitteeTally(commKey);
   renderCommitteeChits(commKey);
 });
+
+
+// Delegate Worksheet Auto-Save Engine
+function initWorksheetAutoSave() {
+  const fields = ['wsCountry', 'wsDelegate', 'wsStance', 'wsTreaties', 'wsAllies', 'wsOperative'];
+  fields.forEach(fId => {
+    const el = document.getElementById(fId);
+    if (!el) return;
+    const saved = localStorage.getItem('gtmun26_ws_' + fId);
+    if (saved) el.value = saved;
+    el.addEventListener('input', () => {
+      localStorage.setItem('gtmun26_ws_' + fId, el.value);
+      const statusEl = document.getElementById('wsSaveStatus');
+      if (statusEl) {
+        statusEl.textContent = 'Auto-saved at ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        statusEl.style.color = '#38ef7d';
+      }
+    });
+  });
+}
+
+window.clearWorksheet = function() {
+  if (!confirm('Are you sure you want to clear your preparation worksheet? All notes will be reset.')) return;
+  const fields = ['wsCountry', 'wsDelegate', 'wsStance', 'wsTreaties', 'wsAllies', 'wsOperative'];
+  fields.forEach(fId => {
+    const el = document.getElementById(fId);
+    if (el) el.value = '';
+    localStorage.removeItem('gtmun26_ws_' + fId);
+  });
+  const statusEl = document.getElementById('wsSaveStatus');
+  if (statusEl) {
+    statusEl.textContent = 'Worksheet cleared';
+    statusEl.style.color = '#e2e8f0';
+  }
+};
+
+window.downloadWorksheetText = function() {
+  const country = (document.getElementById('wsCountry') && document.getElementById('wsCountry').value) || 'Delegation';
+  const delegate = (document.getElementById('wsDelegate') && document.getElementById('wsDelegate').value) || 'Delegate';
+  const stance = (document.getElementById('wsStance') && document.getElementById('wsStance').value) || '';
+  const treaties = (document.getElementById('wsTreaties') && document.getElementById('wsTreaties').value) || '';
+  const allies = (document.getElementById('wsAllies') && document.getElementById('wsAllies').value) || '';
+  const operative = (document.getElementById('wsOperative') && document.getElementById('wsOperative').value) || '';
+
+  const doc = 
+`================================================================================
+GLOBAL TEENS MODEL UNITED NATIONS 2026 — DELEGATE PREPARATION DOSSIER
+================================================================================
+COMMITTEE  : United Nations General Assembly (UNGA Plenary)
+AGENDA     : Deliberating the Stagnation of Decolonization in Non-Self-Governing Territories, 
+             with Special Emphasis on Strategic Archipelagos, Resource Control, 
+             and the Legitimacy of Administrative Powers.
+DELEGATION : ${country}
+DELEGATE   : ${delegate}
+DATE       : ${new Date().toLocaleDateString()}
+================================================================================
+
+[SECTION 1: NATIONAL STANCE & SOVEREIGN INTERESTS]
+--------------------------------------------------------------------------------
+${stance || '(No notes entered)'}
+
+
+[SECTION 2: KEY INTERNATIONAL TREATIES, CHARTERS & ICJ PRECEDENTS]
+--------------------------------------------------------------------------------
+${treaties || '(No notes entered)'}
+
+
+[SECTION 3: BLOC ALLIES, ADVERSARIES & RED LINES]
+--------------------------------------------------------------------------------
+${allies || '(No notes entered)'}
+
+
+[SECTION 4: PROPOSED OPERATIVE CLAUSES FOR WORKING PAPER / DRAFT RESOLUTION]
+--------------------------------------------------------------------------------
+${operative || '(No notes entered)'}
+
+================================================================================
+CONFIDENTIAL DIPLOMATIC BRIEFING · PREPARED FOR GTMUN'26
+================================================================================`;
+
+  const blob = new Blob([doc], { type: 'text/plain;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `GTMUN26_Worksheet_${country.replace(/[^a-zA-Z0-9]/g, '_')}.txt`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+};
+
+// Initialize worksheet on page load
+document.addEventListener('DOMContentLoaded', initWorksheetAutoSave);

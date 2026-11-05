@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    // Immediate global declaration of switchTab
+    window.switchTab = function(tabId) {
+      if (!tabId) return;
+      const cleanId = tabId.replace('tab-', '').replace('btn-', '').trim().toLowerCase();
+      document.querySelectorAll('.portal-tab-content').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('.portal-tabs button').forEach(el => el.classList.remove('active'));
+      const target = document.getElementById('tab-' + cleanId);
+      if (target) {
+        target.style.display = 'block';
+        try { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch(e){}
+      }
+      const btn = document.getElementById('btn-' + cleanId);
+      if (btn) btn.classList.add('active');
+      try { history.replaceState(null, null, '#tab-' + cleanId); } catch(e){}
+    };
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>United Nations General Assembly — GTMUN’26 Official Portal</title>
@@ -109,12 +127,12 @@
 
     <!-- TABS TO VIEW HUB VS IN-DEPTH SECTIONS -->
     <div class="portal-tabs" style="margin-bottom:2rem">
-      <button id="btn-overview" class="active">Hub Actions</button>
-      <button id="btn-tally">Live Tally</button>
-      <button id="btn-guide">Background Guide</button>
-      <button id="btn-quiz">Interactive Quiz</button>
-      <button id="btn-worksheet">Delegate Worksheet</button>
-      <button id="btn-chits">Chit Tracker</button>
+      <button id="btn-overview" class="active" onclick="switchTab('overview')">Hub Actions</button>
+      <button id="btn-tally" onclick="switchTab('tally')">Live Tally</button>
+      <button id="btn-guide" onclick="switchTab('guide')">Background Guide</button>
+      <button id="btn-quiz" onclick="switchTab('quiz')">Interactive Quiz</button>
+      <button id="btn-worksheet" onclick="switchTab('worksheet')">Delegate Worksheet</button>
+      <button id="btn-chits" onclick="switchTab('chits')">Chit Tracker</button>
     </div>
 
     <!-- TAB 1: HUB OVERVIEW & ACTIONS (Exact 3-section layout: Prepare, Submit, Track) -->
@@ -326,43 +344,141 @@
       </div>
     </div>
 
-    <!-- TAB 4: WORKSHEET -->
+    
+    <!-- TAB 5: INTERACTIVE DELEGATE WORKSHEET -->
     <div id="tab-worksheet" class="portal-tab-content" style="display:none">
-      <div style="max-width:850px;margin:auto">
-        <div class="ws-intro">
-          <h2 style="color:var(--ink-navy);margin-bottom:.4rem">Delegate Preparation Worksheet</h2>
-          <p>Complete this worksheet prior to the committee sessions. Clarify your national interests, legal citations, allies, and proposed operative clauses.</p>
-          <button class="btn btn-red" type="button" onclick="window.print()" style="margin-top:.6rem">Print / Save as PDF</button>
+      <div style="max-width:920px;margin:auto">
+        <!-- Worksheet Hero Header -->
+        <div style="background:linear-gradient(135deg, #0d1e3d, #071124);border:1.5px solid rgba(201,168,76,0.4);border-radius:14px;padding:26px 30px;margin-bottom:24px;box-shadow:0 10px 30px rgba(0,0,0,0.35);">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;">
+            <div>
+              <div style="color:var(--gold);font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;">
+                Official UNGA Delegate Tool · Session Preparation
+              </div>
+              <h2 style="font-family:'Cinzel',serif;font-size:1.75rem;color:#ffffff;font-weight:800;margin:0 0 8px;line-height:1.2;">
+                Delegate Preparation Worksheet
+              </h2>
+              <p style="color:#cad5e8;font-size:0.92rem;line-height:1.6;margin:0;max-width:640px;">
+                Synthesize your delegation’s national policy, binding international legal precedents, bloc voting alliances, and draft operative clauses before caucus convenes. Notes auto-save continuously to your browser.
+              </p>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+              <span id="wsSaveStatus" style="font-size:0.78rem;color:#94a3b8;font-weight:600;font-family:sans-serif;">
+                💾 Ready · Auto-saves as you type
+              </span>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                <button type="button" onclick="window.print()" class="btn btn-outline" style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;font-size:0.82rem;background:rgba(255,255,255,0.06);color:#fff;border:1px solid rgba(255,255,255,0.25);border-radius:6px;cursor:pointer;">
+                  🖨️ Print / PDF
+                </button>
+                <button type="button" onclick="downloadWorksheetText()" class="btn btn-gold" style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;font-size:0.82rem;background:var(--gold);color:#081226;font-weight:700;border:none;border-radius:6px;cursor:pointer;">
+                  📥 Download Notes
+                </button>
+                <button type="button" onclick="clearWorksheet()" style="padding:8px 12px;font-size:0.82rem;background:transparent;color:#f87171;border:1px solid rgba(248,113,113,0.3);border-radius:6px;cursor:pointer;">
+                  Reset
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Delegate Identity Bar -->
+          <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:16px;margin-top:22px;padding-top:18px;border-top:1px solid rgba(201,168,76,0.2);">
+            <div>
+              <label style="display:block;font-size:0.75rem;font-weight:700;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">
+                Country / Delegation Portfolio
+              </label>
+              <input type="text" id="wsCountry" placeholder="e.g. France, Mauritius, India, United Kingdom..." style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.18);border-radius:8px;color:#fff;font-size:0.92rem;outline:none;">
+            </div>
+            <div>
+              <label style="display:block;font-size:0.75rem;font-weight:700;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">
+                Delegate Full Name
+              </label>
+              <input type="text" id="wsDelegate" placeholder="Enter your full name..." style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.18);border-radius:8px;color:#fff;font-size:0.92rem;outline:none;">
+            </div>
+            <div>
+              <label style="display:block;font-size:0.75rem;font-weight:700;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">
+                Assigned Committee
+              </label>
+              <input type="text" value="UNGA Plenary · Decolonization" readonly style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:#9fb2d4;font-size:0.92rem;">
+            </div>
+          </div>
         </div>
 
-        <div class="ws-sec">
-          <span class="ws-tag">Section 1</span>
-          <h3>National Stance &amp; Sovereign Interests</h3>
-          <p style="color:var(--muted);font-size:.9rem">What is your country's official position on this agenda? What treaties have you signed or ratified?</p>
-          <div class="ws-fillbox"></div>
+        <!-- Section 1 -->
+        <div style="background:#0c172d;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:22px 26px;margin-bottom:20px;box-shadow:0 4px 14px rgba(0,0,0,0.2);">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <span style="background:linear-gradient(135deg, #e2b35b, #c9a84c);color:#060e1d;font-weight:800;font-size:0.72rem;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:1px;">
+              Section 1
+            </span>
+            <h3 style="font-family:'Cinzel',serif;font-size:1.15rem;color:#ffffff;margin:0;font-weight:700;">
+              National Stance &amp; Sovereign Interests
+            </h3>
+          </div>
+          <p style="color:#94a3b8;font-size:0.86rem;line-height:1.55;margin:0 0 12px;">
+            What is your delegation’s official position regarding the 17 Non-Self-Governing Territories? Is your government an administering power safeguarding strategic installations (e.g., naval hubs, radar facilities), or an advocate for immediate decolonization, territorial integrity, and the restitution of detached archipelagos?
+          </p>
+          <textarea id="wsStance" rows="5" placeholder="Record your national policy, domestic legislation, white papers, and past plenary voting records..." style="width:100%;box-sizing:border-box;padding:14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.14);border-radius:8px;color:#f1f5f9;font-family:'Inter',system-ui,sans-serif;font-size:0.92rem;line-height:1.6;resize:vertical;outline:none;"></textarea>
         </div>
 
-        <div class="ws-sec">
-          <span class="ws-tag">Section 2</span>
-          <h3>Key International Treaties &amp; Resolutions</h3>
-          <p style="color:var(--muted);font-size:.9rem">List past UN resolutions, multilateral pacts, and international legal articles supporting your case.</p>
-          <div class="ws-fillbox"></div>
+        <!-- Section 2 -->
+        <div style="background:#0c172d;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:22px 26px;margin-bottom:20px;box-shadow:0 4px 14px rgba(0,0,0,0.2);">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <span style="background:linear-gradient(135deg, #e2b35b, #c9a84c);color:#060e1d;font-weight:800;font-size:0.72rem;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:1px;">
+              Section 2
+            </span>
+            <h3 style="font-family:'Cinzel',serif;font-size:1.15rem;color:#ffffff;margin:0;font-weight:700;">
+              Key International Treaties, Charters &amp; ICJ Precedents
+            </h3>
+          </div>
+          <p style="color:#94a3b8;font-size:0.86rem;line-height:1.55;margin:0 0 12px;">
+            Identify binding legal instruments that substantiate your arguments: UN Charter Chapter XI (Articles 73–74), Resolution 1514 (XV), Resolution 1541 (XV), UNCLOS Part II/V/VI (EEZ and maritime boundaries), and International Court of Justice Advisory Opinions (e.g. <em>Legal Consequences of the Separation of the Chagos Archipelago from Mauritius in 1965</em>).
+          </p>
+          <textarea id="wsTreaties" rows="5" placeholder="List specific articles, advisory opinion paragraphs, C-24 reports, and treaty clauses..." style="width:100%;box-sizing:border-box;padding:14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.14);border-radius:8px;color:#f1f5f9;font-family:'Inter',system-ui,sans-serif;font-size:0.92rem;line-height:1.6;resize:vertical;outline:none;"></textarea>
         </div>
 
-        <div class="ws-sec">
-          <span class="ws-tag">Section 3</span>
-          <h3>Bloc Allies &amp; Opposing Coalitions</h3>
-          <p style="color:var(--muted);font-size:.9rem">Which countries share your interests? Who are your adversaries, and how will you rebut them?</p>
-          <div class="ws-fillbox"></div>
+        <!-- Section 3 -->
+        <div style="background:#0c172d;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:22px 26px;margin-bottom:20px;box-shadow:0 4px 14px rgba(0,0,0,0.2);">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <span style="background:linear-gradient(135deg, #e2b35b, #c9a84c);color:#060e1d;font-weight:800;font-size:0.72rem;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:1px;">
+              Section 3
+            </span>
+            <h3 style="font-family:'Cinzel',serif;font-size:1.15rem;color:#ffffff;margin:0;font-weight:700;">
+              Bloc Allies, Adversaries &amp; Compromise Red Lines
+            </h3>
+          </div>
+          <p style="color:#94a3b8;font-size:0.86rem;line-height:1.55;margin:0 0 12px;">
+            Which regional blocs share your strategic goals (e.g., Non-Aligned Movement, African Union, Pacific Islands Forum, Western European and Others Group)? What are your nation's non-negotiable red lines, and where can you construct pragmatic diplomatic compromises?
+          </p>
+          <textarea id="wsAllies" rows="5" placeholder="Outline natural co-sponsors, adversary arguments to rebut, and potential treaty concessions..." style="width:100%;box-sizing:border-box;padding:14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.14);border-radius:8px;color:#f1f5f9;font-family:'Inter',system-ui,sans-serif;font-size:0.92rem;line-height:1.6;resize:vertical;outline:none;"></textarea>
         </div>
 
-        <div class="ws-sec">
-          <span class="ws-tag">Section 4</span>
-          <h3>Draft Operative Clauses for Working Paper</h3>
-          <p style="color:var(--muted);font-size:.9rem">Draft at least two concrete, actionable solutions (Call upon..., Recommends..., Establishes...).</p>
-          <div class="ws-fillbox"></div>
+        <!-- Section 4 -->
+        <div style="background:#0c172d;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:22px 26px;margin-bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,0.2);">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <span style="background:linear-gradient(135deg, #e2b35b, #c9a84c);color:#060e1d;font-weight:800;font-size:0.72rem;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:1px;">
+              Section 4
+            </span>
+            <h3 style="font-family:'Cinzel',serif;font-size:1.15rem;color:#ffffff;margin:0;font-weight:700;">
+              Proposed Operative Clauses for Working Paper
+            </h3>
+          </div>
+          <p style="color:#94a3b8;font-size:0.86rem;line-height:1.55;margin:0 0 12px;">
+            Draft concrete, actionable clauses using standardized UNGA operative verbs (e.g., <em>Calls upon, Urges, Recommends, Decides, Mandates, Establishes</em>). Focus on verifiable mechanisms such as UN-monitored referendums, joint resource management commissions, or annual compliance audits under the Fourth Committee.
+          </p>
+          <textarea id="wsOperative" rows="6" placeholder="1. Urges the administering powers to...&#10;2. Recommends the establishment of an Independent Maritime Oversight Commission...&#10;3. Decides to remain actively seized of the matter." style="width:100%;box-sizing:border-box;padding:14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.14);border-radius:8px;color:#f1f5f9;font-family:'Inter',system-ui,sans-serif;font-size:0.92rem;line-height:1.6;resize:vertical;outline:none;"></textarea>
+        </div>
+
+        <!-- Bottom Action Strip -->
+        <div style="text-align:center;padding:16px;background:rgba(255,255,255,0.02);border:1px dashed rgba(201,168,76,0.3);border-radius:10px;margin-bottom:40px;">
+          <p style="color:#9fb2d4;font-size:0.85rem;margin:0 0 10px;">
+            Ready to share your working paper or position with the dais?
+          </p>
+          <button class="btn btn-gold" type="button" onclick="openGoogleForm('workingPaper')" style="padding:10px 22px;font-size:0.88rem;font-weight:700;border:none;border-radius:8px;cursor:pointer;">
+            Submit Completed Working Paper / Document →
+          </button>
         </div>
       </div>
+    </div>
+
     </div>
 
     <!-- TAB 5: COMMITTEE CHITS & INQUIRIES TRACKER -->
