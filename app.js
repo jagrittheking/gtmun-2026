@@ -1,3 +1,123 @@
+
+// ==========================================
+// GTMUN'26 REAL-TIME CLIENT-SIDE SHEETS FETCH
+// Queries live Google Sheets via GViz JSON API
+// ==========================================
+window.GTMUN_SHEETS = {
+  substantive: "1Hd2kBTIJn3CUOK4458pZZe_7AAz_y5wQwrxtubH-Xi0",
+  ungaPoi: "1nikS0MC325_kVkk88WI32UTFpUtB7k8orol9KsE-hik",
+  documents: "1brrs2FZ_edhIjbxzd4iioHokIaLAAohK0UW2cKWTQGs"
+};
+
+window.fetchGoogleSheetData = async function(sheetId) {
+  try {
+    const url = "https://docs.google.com/spreadsheets/d/" + sheetId + "/gviz/tq?tqx=out:json";
+    const res = await fetch(url);
+    const text = await res.text();
+    if (text.includes("google.visualization.Query.setResponse")) {
+      const jsonStr = text.substring(text.indexOf("(") + 1, text.lastIndexOf(")"));
+      const parsed = JSON.parse(jsonStr);
+      return parsed.table.rows || [];
+    }
+  } catch (e) {
+    console.warn("GViz fetch failed for sheet " + sheetId, e);
+  }
+  return [];
+};
+
+window.loadAllLiveSubmissionsFromSheets = async function() {
+  try {
+    const [subRows, poiRows, docRows] = await Promise.all([
+      window.fetchGoogleSheetData(window.GTMUN_SHEETS.substantive),
+      window.fetchGoogleSheetData(window.GTMUN_SHEETS.ungaPoi),
+      window.fetchGoogleSheetData(window.GTMUN_SHEETS.documents)
+    ]);
+
+    const liveRecords = [];
+
+    // Parse Substantive Chits
+    subRows.forEach((r, idx) => {
+      const vals = r.c.map(cell => cell ? cell.v : "");
+      const time = vals[0] || "";
+      const comm = (vals[1] || "unga").toLowerCase();
+      const from = vals[2] || "";
+      const to = vals[3] || "Executive Board";
+      const content = vals[4] || "";
+      if (from) {
+        liveRecords.push({
+          id: "SUB-" + (1000 + idx),
+          type: "Substantive Chit",
+          committee: comm,
+          from: String(from).trim(),
+          to: String(to).trim(),
+          content: content,
+          time: time,
+          status: "Verified"
+        });
+      }
+    });
+
+    // Parse POI Chits
+    poiRows.forEach((r, idx) => {
+      const vals = r.c.map(cell => cell ? cell.v : "");
+      const time = vals[0] || "";
+      const from = vals[1] || "";
+      const to = vals[2] || "";
+      const content = vals[4] || "";
+      if (from) {
+        liveRecords.push({
+          id: "POI-" + (2000 + idx),
+          type: "POI Chit",
+          committee: "unga",
+          from: String(from).trim(),
+          to: String(to).trim(),
+          content: content,
+          time: time,
+          status: "Routed"
+        });
+      }
+    });
+
+    // Parse Documents
+    docRows.forEach((r, idx) => {
+      const vals = r.c.map(cell => cell ? cell.v : "");
+      if (idx === 0 && vals[0] === "Timestamp") return;
+      const time = vals[0] || "";
+      const comm = (vals[1] || "unga").toLowerCase();
+      const from = vals[2] || "";
+      const docType = vals[3] || "Working Paper";
+      const link = vals[4] || "";
+      if (from) {
+        liveRecords.push({
+          id: "DOC-" + (3000 + idx),
+          type: docType,
+          committee: comm,
+          from: String(from).trim(),
+          to: "Committee Dais",
+          content: docType + " (" + link + ")",
+          time: time,
+          status: "Cleared"
+        });
+      }
+    });
+
+    if (liveRecords.length > 0) {
+      window.gtmunLiveSubmissions = liveRecords;
+      localStorage.setItem("gtmun26_delegate_chits", JSON.stringify(liveRecords));
+      window.dispatchEvent(new CustomEvent("gtmun:submissions-updated", { detail: liveRecords }));
+      console.log("Loaded " + liveRecords.length + " live records directly from Google Sheets!");
+    }
+  } catch (err) {
+    console.error("Error loading live submissions:", err);
+  }
+};
+
+// Immediately invoke live sheet synchronization
+if (typeof window !== "undefined") {
+  window.loadAllLiveSubmissionsFromSheets();
+}
+
+
 // ==============================================================
 // GTMUN'26 OFFICIAL CONFERENCE CONFIGURATION & LIVE SYNC ENGINE
 // ==============================================================

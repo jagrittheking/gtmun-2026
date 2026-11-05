@@ -126,45 +126,61 @@ function loadCommittee(commKey) {
 
   // Render Quiz
   const quizForm = document.getElementById('quizForm');
-  if (quizForm) {
-    quizForm.innerHTML = data.quiz.map((item, qIdx) => `
-      <fieldset class="quiz-question">
-        <legend><span>Question ${qIdx + 1}:</span> ${item.q}</legend>
-        ${item.options.map((opt, oIdx) => `
-          <label id="q${qIdx}_opt${oIdx}">
-            <input type="radio" name="q_${qIdx}" value="${oIdx}" required>
-            ${opt}
-          </label>
-        `).join('')}
-        <div class="feedback" id="feedback_${qIdx}" style="display:none;margin-top:12px"></div>
-      </fieldset>
-    `).join('') + `
-      <div class="quiz-actions" style="margin-top:20px">
-        <button class="button" type="submit">Submit &amp; Check Answers</button>
-        <span id="quizScoreText" style="margin-left:15px;font-weight:700;color:var(--gold)"></span>
-      </div>
-    `;
+    if (quizForm && data.quiz && data.quiz.length > 0) {
+      quizForm.innerHTML = data.quiz.map((item, qIdx) => `
+        <fieldset class="quiz-question" id="q_box_${qIdx}" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:18px 22px;margin-bottom:18px;">
+          <legend style="color:var(--gold);font-family:var(--font-head);font-size:1.05rem;font-weight:700;padding:0 8px;margin-bottom:8px;">
+            Question ${qIdx + 1} of ${data.quiz.length} · <span style="font-size:0.85rem;color:#9fb2d4;font-weight:normal">${item.section || 'Background Guide'}</span>
+          </legend>
+          <p style="font-size:1.02rem;color:#ffffff;line-height:1.55;margin-bottom:12px;font-weight:500;">${item.q}</p>
+          <div class="options" style="display:flex;flex-direction:column;gap:8px;">
+            ${item.options.map((opt, oIdx) => `
+              <label style="display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);cursor:pointer;transition:all 0.2s;" id="lbl_${qIdx}_${oIdx}">
+                <input type="radio" name="q_${qIdx}" value="${oIdx}" required style="margin-top:4px;">
+                <span style="font-size:0.95rem;color:#e2e8f0;line-height:1.4;">${opt}</span>
+              </label>
+            `).join('')}
+          </div>
+          <div id="feedback_${qIdx}" style="display:none;margin-top:12px;padding:12px 14px;border-radius:8px;font-size:0.92rem;line-height:1.5;"></div>
+        </fieldset>
+      `).join('') + `
+        <div class="quiz-actions" style="margin-top:24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+          <button type="submit" class="btn btn-red" style="padding:12px 28px;font-size:1rem;font-weight:700;">Submit Quiz Answers</button>
+          <button type="reset" class="btn btn-outline" style="padding:12px 20px;" onclick="document.querySelectorAll('[id^=feedback_]').forEach(el => el.style.display='none');document.getElementById('quizScoreText').textContent=''">Reset</button>
+          <span id="quizScoreText" style="font-size:1.15rem;font-weight:800;color:var(--gold);font-family:var(--font-head);"></span>
+        </div>
+      `;
 
-    quizForm.onsubmit = function(e) {
-      e.preventDefault();
-      let score = 0;
-      data.quiz.forEach((item, qIdx) => {
-        const selected = quizForm.elements[`q_${qIdx}`].value;
-        const fbEl = document.getElementById(`feedback_${qIdx}`);
-        fbEl.style.display = 'block';
-
-        if (parseInt(selected) === item.correct) {
-          score++;
-          fbEl.innerHTML = `<span style="color:#72d6ae;font-weight:700">✓ Correct!</span> ${item.exp}`;
-          document.getElementById(`q${qIdx}_opt${selected}`).className = 'correct';
-        } else {
-          fbEl.innerHTML = `<span style="color:#f87171;font-weight:700">✗ Incorrect.</span> Correct answer: <strong>${item.options[item.correct]}</strong>. ${item.exp}`;
-          document.getElementById(`q${qIdx}_opt${selected}`).className = 'incorrect';
-          document.getElementById(`q${qIdx}_opt${item.correct}`).className = 'correct';
-        }
-      });
-      document.getElementById('quizScoreText').textContent = `Your Score: ${score} / ${data.quiz.length}`;
-    };
+      quizForm.onsubmit = function(e) {
+        e.preventDefault();
+        let score = 0;
+        data.quiz.forEach((item, qIdx) => {
+          const selected = quizForm.elements[`q_${qIdx}`].value;
+          const feedback = document.getElementById(`feedback_${qIdx}`);
+          const qBox = document.getElementById(`q_box_${qIdx}`);
+          
+          if (parseInt(selected) === item.correct) {
+            score++;
+            qBox.style.borderColor = 'rgba(34, 197, 94, 0.6)';
+            feedback.style.display = 'block';
+            feedback.style.background = 'rgba(34, 197, 94, 0.12)';
+            feedback.style.border = '1px solid rgba(34, 197, 94, 0.35)';
+            feedback.style.color = '#86efac';
+            feedback.innerHTML = `<strong>✔ Correct!</strong> (${item.section}): ${item.exp}`;
+          } else {
+            qBox.style.borderColor = 'rgba(239, 68, 68, 0.6)';
+            feedback.style.display = 'block';
+            feedback.style.background = 'rgba(239, 68, 68, 0.12)';
+            feedback.style.border = '1px solid rgba(239, 68, 68, 0.35)';
+            feedback.style.color = '#fca5a5';
+            feedback.innerHTML = `<strong>✘ Incorrect.</strong> Correct answer is <em>"${item.options[item.correct]}"</em>.<br><span style="margin-top:4px;display:block;color:#e2e8f0;">${item.exp}</span>`;
+          }
+        });
+        const scorePct = Math.round((score / data.quiz.length) * 100);
+        document.getElementById('quizScoreText').textContent = `Your Score: ${score} / ${data.quiz.length} (${scorePct}%)`;
+        document.getElementById('quizScoreText').scrollIntoView({ behavior: 'smooth' });
+      };
+    }
   }
 
   // Parliamentary recognition tracking
@@ -673,9 +689,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Check URL hash for direct tab navigation (e.g. portal.html?committee=unga#tally)
-  if (window.location.hash === '#tally' || window.location.hash === '#tab-tally' || window.location.search.includes('tab=tally')) {
+  // Robust direct tab navigation (?tab=quiz, #quiz, #tab-quiz, ?tab=tally)
+  const urlParams = new URLSearchParams(window.location.search);
+  const activeTabParam = urlParams.get('tab') || window.location.hash.replace('#tab-', '').replace('#', '');
+  if (['overview', 'tally', 'guide', 'quiz', 'worksheet', 'chits'].includes(activeTabParam)) {
+    switchTab(activeTabParam);
+  } else if (window.location.hash.includes('tally')) {
     switchTab('tally');
+  } else if (window.location.hash.includes('quiz')) {
+    switchTab('quiz');
   }
 });
 
