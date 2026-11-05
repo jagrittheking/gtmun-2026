@@ -12,31 +12,82 @@ const COMMITTEES_DATA = {
     overview: "The United Nations General Assembly considers the prolonged stagnation of decolonization across the remaining 17 Non-Self-Governing Territories (NSGTs). With over 1.6 to 2 million people remaining under colonial administration and zero de-listings since 2002, the General Assembly must address the friction between territorial integrity and the inalienable Right to Self-Determination under Resolution 1514 (XV), forward military enclaves, and sovereign control over vast Exclusive Economic Zones (EEZs).",
     guideSections: [
       {
-        id: "mandate",
-        title: "Part I: General Assembly Competence & Resolution 1514 (XV)",
-        content: `Under UN Charter Chapter XI (Articles 73 and 74) and landmark General Assembly Resolution 1514 (XV)—the Magna Carta of Decolonization—all peoples have an inalienable right to complete freedom and the exercise of sovereign self-determination. The Fourth Committee (SPECPOL) and the Special Committee on Decolonization (C-24) maintain binding oversight over all territories that have not yet achieved self-government.`
+            "id": "ch1",
+            "title": "1. Mandate, Competence and Legal Authority of the General Assembly",
+            "content": "Under UN Charter Chapter XI (Articles 73 and 74) and landmark General Assembly Resolution 1514 (XV)—the Magna Carta of Decolonization—all peoples have an inalienable right to complete freedom, the exercise of sovereign self-determination, and the integrity of their national territory. The General Assembly Plenary, operating through the Fourth Committee (Special Political and Decolonization Committee) and the Special Committee on Decolonization (C-24), exercises comprehensive political competence to evaluate administrative progress, adjudicate territorial petitions, and formulate binding diplomatic recommendations."
       },
       {
-        id: "stagnation",
-        title: "Part II: The 17 NSGTs & The 30-Year Deadlock",
-        content: `An estimated 1.6 to 2 million people remain across 17 officially designated Non-Self-Governing Territories, predominantly small island archipelagos in the Pacific, Atlantic, and Caribbean (e.g. New Caledonia, Guam, French Polynesia, Bermuda, Falklands/Malvinas, Gibraltar) alongside Western Sahara. While the first wave of decolonization liberated over 80 nations, the remaining territories face structural stagnation driven by metropolitan dependency and geostrategic reluctance.`
+            "id": "ch2",
+            "title": "2. The Decolonization Deadlock: 17 NSGTs in Historical Perspective",
+            "content": "An estimated 1.6 to 2 million inhabitants remain across 17 officially recognized Non-Self-Governing Territories, predominantly small island archipelagos in the Pacific, Atlantic, and Caribbean alongside Western Sahara. While the initial waves of decolonization liberated over 80 sovereign nations, progress has reached a 30-year standstill with zero de-listings since 2002. Metropolitan powers maintain de facto administrative control, often citing small territorial scale, economic vulnerability, or disputed regional claims."
       },
       {
-        id: "geostrategy",
-        title: "Part III: Forward Military Enclaves & Archipelagic EEZs",
-        content: `Administering powers retain control over remote archipelagos to safeguard forward military installations (Naval Base Guam, Diego Garcia, Gibraltar naval corridors). Furthermore, under UNCLOS (1982), sovereign control generates massive 200-nautical-mile Exclusive Economic Zones (EEZs) controlling lucrative offshore fisheries, subsea critical mineral deposits (nickel, cobalt polymetallic nodules), and strategic subsea communication cable corridors.`
+            "id": "ch3",
+            "title": "3. Geopolitical Imperatives: Forward Basing & Military Enclaves",
+            "content": "Administering powers frequently retain overseas archipelagos to safeguard critical forward-deployed military installations. Naval Base Guam, Andersen Air Force Base, Diego Garcia in the British Indian Ocean Territory, and the naval installations of Gibraltar illustrate how sovereign territorial claims intersect with global power projection, maritime surveillance, and strategic nuclear deterrence."
       },
       {
-        id: "sovereignty",
-        title: "Part IV: Right to Self-Determination vs. Territorial Integrity",
-        content: `Debate centers on reconciling Article 1(2) (Self-Determination) with Article 2(4) (Territorial Integrity). In the landmark 2019 Chagos Advisory Opinion, the International Court of Justice affirmed that self-determination possesses the character of an erga omnes obligation—creating binding legal duties for all States to end unlawful colonial separation. Resolution 1541 (XV) establishes three legitimate outcomes: (1) Sovereign Independence, (2) Free Association, or (3) Full Integration.`
+            "id": "ch4",
+            "title": "4. Maritime Sovereignty, UNCLOS & Exclusive Economic Zones",
+            "content": "Under the 1982 United Nations Convention on the Law of the Sea (UNCLOS), sovereignty over small, isolated island outposts generates vast 200-nautical-mile Exclusive Economic Zones (EEZs) and extended continental shelf entitlements. Across the Pacific and Atlantic, metropolitan control of minor atolls locks up millions of square kilometers of maritime commons, granting administering powers exclusive rights over offshore fisheries and critical subsea telecommunication cable lanes."
       },
       {
-        id: "solutions",
-        title: "Part V: Genuine Plebiscites & Sovereign Escrow Accounts",
-        content: `Genuine referenda require neutral UN observation and protected voter rolls to prevent demographic dilution (as illustrated by the Kanak boycott in the 2021 New Caledonia referendum). Operative solutions must mandate sovereign resource escrow accounts (repatriating 30%–50% of offshore royalties into territorial trust funds) and authorize direct sub-sovereign access to the UN Loss and Damage Fund for vulnerable small island territories.`
+            "id": "ch5",
+            "title": "5. Resource Sovereignty & Deep-Sea Polymetallic Minerals",
+            "content": "General Assembly Resolution 1803 (XVII) codifies the Permanent Sovereignty of Peoples over their Natural Wealth and Resources. Today, contested archipelagos sit atop vast reserves of marine resources, nickel laterites (as in New Caledonia), and seabed polymetallic nodules containing cobalt, copper, and rare-earth elements essential for the global green transition. The extraction of these resources without sovereign indigenous consent directly challenges international legal norms."
+      },
+      {
+            "id": "ch6",
+            "title": "6. Legal Architecture: Res 1514 (XV), Res 1541 (XV) & Chapter XI",
+            "content": "Resolution 1541 (XV) explicitly establishes the three legitimate avenues for attaining a full measure of self-government: (1) Sovereign Independence, (2) Free Association with an independent State, or (3) Full Integration on an equal footing. Each outcome requires the free and informed choice of the territorial population expressed through democratic, internationally supervised electoral processes."
+      },
+      {
+            "id": "ch7",
+            "title": "7. Self-Determination vs. Territorial Integrity",
+            "content": "International jurisprudence continually wrestles with the tension between the Right of Peoples to Self-Determination (Article 1(2)) and the Protection of National Unity and Territorial Integrity (Article 2(4) and Resolution 1514, Paragraph 6). In contested sovereignty disputes (e.g. Falkland Islands/Islas Malvinas, Gibraltar, and Western Sahara), administering states argue that territorial integrity cannot be invoked to override the settled wishes of resident populations, while claimant states contend that colonial dismemberment violated historic territorial integrity."
+      },
+      {
+            "id": "ch8",
+            "title": "8. Case Study: Chagos Archipelago & 2019 ICJ Advisory Opinion",
+            "content": "In its landmark 25 February 2019 Advisory Opinion, the International Court of Justice affirmed that the decolonization of Mauritius was not lawfully completed upon its 1968 independence because the United Kingdom unlawfully severed the Chagos Archipelago in 1965. The Court ruled that the right to self-determination has customary international law status with erga omnes character, obligating the United Kingdom to bring an end to its administration of the Chagos Archipelago."
+      },
+      {
+            "id": "ch9",
+            "title": "9. Case Study: New Caledonia & The Nouméa Accord",
+            "content": "New Caledonia encapsulates the modern decolonization dilemma. Following decades of political friction, the 1998 Nouméa Accord established a gradual transfer of competencies and scheduled three referendums. While the first two referendums narrowly rejected independence, the contested third referendum in December 2021 was boycotted by the indigenous Kanak population following COVID-19 mourning restrictions, creating an acute institutional impasse over genuine democratic legitimacy."
+      },
+      {
+            "id": "ch10",
+            "title": "10. Case Study: Strategic Enclaves (Guam, Diego Garcia & Gibraltar)",
+            "content": "In Guam, the indigenous Chamorro population remains disenfranchised from national presidential elections despite hosting major military forward infrastructure. In Diego Garcia, the forced expulsion of the Chagossian population between 1967 and 1973 to facilitate a military base stands as one of the most egregious historical violations of human rights in modern decolonization history."
+      },
+      {
+            "id": "ch11",
+            "title": "11. Plebiscite Integrity, Electoral Registries & Demographic Dilution",
+            "content": "A central hurdle in non-self-governing referendums is defining voting eligibility. When metropolitan citizens are permitted to freely settle in dependent territories, the voting share of the indigenous population can be severely diluted. International standards require strict, transparent residency thresholds, impartial international observers from the UN Secretariat, and clear neutral referendum question wording."
+      },
+      {
+            "id": "ch12",
+            "title": "12. Economic Dependency & Sovereign Escrow Trusts",
+            "content": "Many remaining territories feature small populations and disproportionate reliance on metropolitan budgetary subventions, public sector employment, and tax haven financial services. To overcome economic vulnerability, operative solutions must include the establishment of Sovereign Escrow Trust Funds that pool maritime royalties and mineral revenues to guarantee domestic fiscal viability upon transition."
+      },
+      {
+            "id": "ch13",
+            "title": "13. Small Island Developing States (SIDS) & Climate Vulnerability",
+            "content": "Most NSGTs are low-lying small islands situated on the frontlines of sea-level rise, ocean acidification, and catastrophic weather events. Because of their non-sovereign status, these territories are frequently barred from direct multilateral borrowing from the Green Climate Fund, the Loss and Damage Fund, or the World Bank. The General Assembly must authorize direct sub-sovereign humanitarian and adaptation financing mechanisms."
+      },
+      {
+            "id": "ch14",
+            "title": "14. Comprehensive Operative Frameworks for General Assembly Action",
+            "content": "Delegates are called upon to draft comprehensive draft resolutions featuring enforceable mechanisms: (1) Mandating biennial UN visiting missions under C-24 auspices; (2) Establishing a Special Register of Archipelagic Maritime Exploitation to audit resource extraction in NSGT waters; (3) Creating a Decolonization Transition Escrow Facility; and (4) Establishing bilateral decolonization timetables binding administering powers to schedule internationally observed plebiscites."
+      },
+      {
+            "id": "ch15",
+            "title": "15. Selected Bibliography, Treaties & Primary Source Register",
+            "content": "Core primary instruments: UN Charter (Articles 73–74, 1(2), 2(4)); UNGA Resolutions 1514 (XV), 1541 (XV), 1654 (XVI), 2625 (XXV); UNCLOS (1982); ICJ Advisory Opinions on Western Sahara (1975) and Chagos Archipelago (2019); Special Committee on Decolonization (C-24) Annual Reports (A/78/23); and the British Indian Ocean Territory Sovereignty Agreement (2024–2025)."
       }
-    ],
+],
+
     quiz: [
       {
         q: "What landmark 1960 General Assembly declaration is universally recognized as the 'Magna Carta of Decolonization'?",
